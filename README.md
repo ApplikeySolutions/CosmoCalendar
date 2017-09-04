@@ -1,6 +1,14 @@
 # CosmoCalendar
 * [Usage](#usage)
 * [Customization](#customization)
+   * [Common](#common)
+   * [Selection](#selection)
+   * [Current day](#current-day)
+   * [Navigation buttons](#navigation-buttons)
+   * [Weekend days](#weekend-days)
+   * [Connected days](#connected-days)
+   * [Disabled days](#disabled-days)
+   * [Calendar dialog](#calendar-dialog)
 * [License](#license)
 
 # Usage
@@ -18,7 +26,7 @@
 
 # Customization
 
-  #### Common
+  ### Common
   * calendarOrientation - Possible values: HORIZONTAL, VERTICAL
   * calendarBackgroundColor
   * monthTextColor
@@ -29,7 +37,7 @@
   * showDaysOfWeek - Defines if we need to display week day titles for every month
   * showDaysOfWeekTitle - Defines if we need to display week day title for whole calendar
   
-  #### Selection
+  ### Selection
   * selectionType - Possible values: SINGLE, MULTIPLE, RANGE
   * selectedDayTextColor
   * selectedDayBackgroundColor
@@ -37,16 +45,16 @@
   * selectedDayBackgroundEndColor - Background color of END day from selected range
   * selectionBarMonthTextColor
   
-  #### Current day
+  ### Current day
   * currentDayTextColor
   * currentDayIconRes
   * currentDaySelectedIconRes
   
-  #### Navigation buttons
+  ### Navigation buttons
   * previousMonthIconRes
   * nextMonthIconRes
   
-  #### Weekend days
+  ### Weekend days
   * weekendDays
   ```java
   calendarView.setWeekendDays(new HashSet(){{
@@ -57,7 +65,7 @@
   
   * weekendDayTextColor
   
-  #### Connected days
+  ### Connected days
   You can add some days for example holidays:
   ```java
   Set<Long> connectedDaysSet = new HashSet<>();
@@ -68,7 +76,7 @@
   * connectedDayTextColor
   * connectedDaySelectedTextColor
   
-  #### Disabled days
+  ### Disabled days
   You can add days so that you can not select them:
   ```java
   Set<Long> disabledDaysSet = new HashSet<>();
@@ -77,7 +85,7 @@
   ```
   * disabledDayTextColor - Text color of disabled day
 
-  #### CalendarDialog
+  ### Calendar dialog
    ```java
    new CalendarDialog(this, new OnDaysSelectionListener() {
             @Override
