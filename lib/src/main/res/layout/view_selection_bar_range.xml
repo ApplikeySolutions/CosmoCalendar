@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_range_start_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/space_1x"
+        tools:text="MAY'16" />
+
+    <com.applikeysolutions.cosmocalendar.view.customviews.CircleAnimationTextView
+        android:id="@+id/catv_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="2" />
+
+    <com.applikeysolutions.cosmocalendar.view.customviews.CircleAnimationTextView
+        android:id="@+id/catv_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="15" />
+
+    <com.applikeysolutions.cosmocalendar.view.customviews.CircleAnimationTextView
+        android:id="@+id/catv_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="15" />
+
+    <TextView
+        android:id="@+id/tv_range_end_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/space_1x"
+        tools:text="MAR'17" />
+
+</LinearLayout>

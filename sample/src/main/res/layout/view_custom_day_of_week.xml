@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/day_of_week_padding_vertical"
+    android:paddingTop="@dimen/day_of_week_padding_vertical">
+
+    <TextView
+        android:id="@+id/tv_day_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:text="Mon"
+        android:textSize="@dimen/text_big"
+        android:textStyle="bold" />
+
+</FrameLayout>

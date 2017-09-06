@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="default_calendar_background_color">@android:color/white</color>
+    <color name="default_month_text_color">#595f66</color>
+    <color name="default_other_day_text_color">#c9cacd</color>
+    <color name="default_day_text_color">#4a4a4a</color>
+    <color name="default_weekend_day_text_color">#00cf78</color>
+    <color name="default_week_day_title_text_color">#91959b</color>
+    <color name="default_selected_day_text_color">@android:color/white</color>
+    <color name="default_selected_day_background_color">#33d993</color>
+    <color name="default_selected_day_background_start_color">#00cf7d</color>
+    <color name="default_selected_day_background_end_color">#00a564</color>
+    <color name="default_connected_day_text_color">#f00</color>
+    <color name="default_connected_day_selected_text_color">#f00</color>
+    <color name="default_disabled_day_text_color">#c9cacd</color>
+    <color name="default_border_color">#ececec</color>
+    <color name="default_selection_bar_month_title_text_color">#c9cacd</color>
+
+</resources>

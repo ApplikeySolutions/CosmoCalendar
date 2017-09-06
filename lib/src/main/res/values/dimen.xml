@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_1x">8dp</dimen>
+    <dimen name="space_2x">16dp</dimen>
+    <dimen name="space_3x">24dp</dimen>
+    <dimen name="space_4x">32dp</dimen>
+    <dimen name="space_5x">40dp</dimen>
+    <dimen name="space_6x">48dp</dimen>
+    <dimen name="space_7x">56dp</dimen>
+    <dimen name="space_8x">64dp</dimen>
+
+    <dimen name="day_of_week_padding_vertical">@dimen/space_1x</dimen>
+    <dimen name="day_padding_vertical">@dimen/space_1x</dimen>
+    <dimen name="month_name_padding">@dimen/space_1x</dimen>
+
+    <!--        FONTS DIMEN           -->
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">14sp</dimen>
+    <dimen name="text_big">16sp</dimen>
+    <dimen name="text_large">18sp</dimen>
+
+    <dimen name="day_text_size">14sp</dimen>
+    <dimen name="day_text_padding">8dp</dimen>
+
+</resources>

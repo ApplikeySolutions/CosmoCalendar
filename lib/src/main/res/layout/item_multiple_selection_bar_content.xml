@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.applikeysolutions.cosmocalendar.view.customviews.CircleAnimationTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/catv_day"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:textColor="@color/default_day_text_color"
+    android:textSize="@dimen/day_text_size"
+    tools:text="10" />
