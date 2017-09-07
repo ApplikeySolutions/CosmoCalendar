@@ -12,6 +12,9 @@
 * [License](#license)
 
 # Usage
+  ```xml
+  compile 'com.github.applikeysolutions:cosmocalendar:1.0.0'
+  ```
 
 # Customization
 
