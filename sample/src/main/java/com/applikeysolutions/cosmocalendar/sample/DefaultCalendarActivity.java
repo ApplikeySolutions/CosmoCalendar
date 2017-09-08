@@ -156,6 +156,7 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
         menuThreeMonth.setTitle(getString(R.string.select_three_months));
     }
 
+
     private void logSelectedDaysMenuClick() {
         Toast.makeText(this, "Selected " + calendarView.getSelectedDays().size(), Toast.LENGTH_SHORT).show();
     }
