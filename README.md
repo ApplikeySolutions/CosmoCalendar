@@ -1,11 +1,9 @@
 # CosmoCalendar
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/AppliKeySolutions/CosmoCalendar/blob/master/LICENSE)
 
-Single Choice             |  Multiple
-:-------------------------:|:-------------------------:
-![](pictures/Calendar-single_2.jpg)  |  ![](pictures/Calendar-multiple-years_2.jpg)
-Range             |  Customized
-![](pictures/Calendar-range-years_2.jpg)  |  ![](pictures/Calendar-dialogue-dark_2.jpg)
+Made by [Applikey Solutions](https://applikeysolutions.com)
 
+![](pictures/cosmo-calendar.png)
 
 * [Usage](#usage)
 * [Customization](#customization)
@@ -17,6 +15,7 @@ Range             |  Customized
    * [Connected days](#connected-days)
    * [Disabled days](#disabled-days)
    * [Calendar dialog](#calendar-dialog)
+* [Demo](#demo)
 * [License](#license)
 
 # Usage
@@ -94,6 +93,12 @@ Range             |  Customized
             }
         }).show();
    ```
+# Demo
+Single Choice             |  Multiple
+:-------------------------:|:-------------------------:
+![](pictures/Calendar-single_2.jpg)  |  ![](pictures/Calendar-multiple-years_2.jpg)
+Range             |  Customized
+![](pictures/Calendar-range-years_2.jpg)  |  ![](pictures/Calendar-dialogue-dark_2.jpg)
 
 # License
 
