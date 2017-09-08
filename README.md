@@ -1,4 +1,12 @@
 # CosmoCalendar
+
+Single Choice             |  Multiple
+:-------------------------:|:-------------------------:
+![](pictures/Calendar-single_2.jpg)  |  ![](pictures/Calendar-multiple-years_2.jpg)
+Range             |  Customized
+![](pictures/Calendar-range-years_2.jpg)  |  ![](pictures/Calendar-dialogue-dark_2.jpg)
+
+
 * [Usage](#usage)
 * [Customization](#customization)
    * [Common](#common)
