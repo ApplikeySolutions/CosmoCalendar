@@ -35,11 +35,18 @@ public class DayHolder extends BaseDayHolder {
         if (day.isCurrent()) {
             //get current day icon height
             int height;
+
+            //for performance reasos, simply measure the bmp, do not allocate it
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+
             if (isSelected) {
-                height = BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDaySelectedIconRes()).getHeight();
+                BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDaySelectedIconRes(), options);
             } else {
-                height = BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDayIconRes()).getHeight();
+                BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDayIconRes(), options);
             }
+
+            height = options.outHeight;
 
             ctvDay.setCompoundDrawablePadding(height * -1);
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, isSelected

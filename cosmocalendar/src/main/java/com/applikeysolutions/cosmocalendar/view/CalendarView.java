@@ -140,8 +140,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int orientation = typedArray.getInteger(R.styleable.CalendarView_orientation, SettingsManager.DEFAULT_ORIENTATION);
         int firstDayOfWeek = typedArray.getInteger(R.styleable.CalendarView_firstDayOfTheWeek, SettingsManager.DEFAULT_FIRST_DAY_OF_WEEK);
         int selectionType = typedArray.getInteger(R.styleable.CalendarView_selectionType, SettingsManager.DEFAULT_SELECTION_TYPE);
-        boolean showDaysOfWeekTitle = orientation == LinearLayoutManager.HORIZONTAL ? false : true;
-        boolean showDaysOfWeek = orientation == LinearLayoutManager.HORIZONTAL ? true : false;
+        boolean showDaysOfWeekTitle = orientation != LinearLayoutManager.HORIZONTAL;
+        boolean showDaysOfWeek = orientation == LinearLayoutManager.HORIZONTAL;
         int calendarBackgroundColor = typedArray.getColor(R.styleable.CalendarView_calendarBackgroundColor, ContextCompat.getColor(getContext(), R.color.default_calendar_background_color));
         int monthTextColor = typedArray.getColor(R.styleable.CalendarView_monthTextColor, ContextCompat.getColor(getContext(), R.color.default_month_text_color));
         int otherDayTextColor = typedArray.getColor(R.styleable.CalendarView_otherDayTextColor, ContextCompat.getColor(getContext(), R.color.default_other_day_text_color));
@@ -195,19 +195,19 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
             int weekdaysAttr = typedArray.getInteger(R.styleable.CalendarView_weekendDays, WeekDay.SUNDAY);
             if (containsFlag(weekdaysAttr, WeekDay.MONDAY))
-                weekendDays.add(Long.valueOf(Calendar.MONDAY));
+                weekendDays.add((long) Calendar.MONDAY);
             if (containsFlag(weekdaysAttr, WeekDay.TUESDAY))
-                weekendDays.add(Long.valueOf(Calendar.TUESDAY));
+                weekendDays.add((long) Calendar.TUESDAY);
             if (containsFlag(weekdaysAttr, WeekDay.WEDNESDAY))
-                weekendDays.add(Long.valueOf(Calendar.WEDNESDAY));
+                weekendDays.add((long) Calendar.WEDNESDAY);
             if (containsFlag(weekdaysAttr, WeekDay.THURSDAY))
-                weekendDays.add(Long.valueOf(Calendar.THURSDAY));
+                weekendDays.add((long) Calendar.THURSDAY);
             if (containsFlag(weekdaysAttr, WeekDay.FRIDAY))
-                weekendDays.add(Long.valueOf(Calendar.FRIDAY));
+                weekendDays.add((long) Calendar.FRIDAY);
             if (containsFlag(weekdaysAttr, WeekDay.SATURDAY))
-                weekendDays.add(Long.valueOf(Calendar.SATURDAY));
+                weekendDays.add((long) Calendar.SATURDAY);
             if (containsFlag(weekdaysAttr, WeekDay.SUNDAY))
-                weekendDays.add(Long.valueOf(Calendar.SUNDAY));
+                weekendDays.add((long) Calendar.SUNDAY);
 
             settingsManager.setWeekendDays(weekendDays);
         }
@@ -235,8 +235,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      * VERTICAL - displaying above whole calendar
      */
     private void setDaysOfWeekTitles() {
-        settingsManager.setShowDaysOfWeekTitle(settingsManager.getCalendarOrientation() == LinearLayoutManager.HORIZONTAL ? false : true);
-        settingsManager.setShowDaysOfWeek(settingsManager.getCalendarOrientation() == LinearLayoutManager.HORIZONTAL ? true : false);
+        settingsManager.setShowDaysOfWeekTitle(settingsManager.getCalendarOrientation() != LinearLayoutManager.HORIZONTAL);
+        settingsManager.setShowDaysOfWeek(settingsManager.getCalendarOrientation() == LinearLayoutManager.HORIZONTAL);
 
         if (llDaysOfWeekTitles == null) {
             createDaysOfWeekTitle();

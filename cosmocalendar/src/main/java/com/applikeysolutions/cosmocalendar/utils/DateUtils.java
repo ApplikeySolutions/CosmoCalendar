@@ -84,7 +84,7 @@ public class DateUtils {
     }
 
     public static boolean isCurrentDate(Date date) {
-        return date != null ? android.text.format.DateUtils.isToday(date.getTime()) : false;
+        return date != null && android.text.format.DateUtils.isToday(date.getTime());
     }
 
     public static boolean isDayInRange(Day day, Day dayStart, Day dayEnd) {
