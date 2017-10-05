@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/AppliKeySolutions/CosmoCalendar'
     gitUrl = 'https://github.com/AppliKeySolutions/CosmoCalendar.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'devilbrain666'
     developerName = 'Ostapenko Yura'
@@ -31,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
     }
     buildTypes {
         release {
