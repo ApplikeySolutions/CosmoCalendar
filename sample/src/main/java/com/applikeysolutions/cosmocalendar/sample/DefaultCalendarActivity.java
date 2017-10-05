@@ -23,7 +23,6 @@ import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 public class DefaultCalendarActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -48,8 +47,6 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
 
         initViews();
         createCriterias();
-
-        calendarView.setDisabledDays(Collections.singleton(1507156565000L));
     }
 
     private void initViews() {

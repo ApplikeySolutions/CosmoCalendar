@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ll_settings"
-        android:layout_below="@id/toolbar"
-        app:disabledDayTextColor="@color/default_connected_day_text_color"/>
+        android:layout_below="@id/toolbar"/>
 
     <LinearLayout
         android:id="@+id/ll_settings"

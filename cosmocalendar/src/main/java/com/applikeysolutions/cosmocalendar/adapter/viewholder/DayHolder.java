@@ -33,22 +33,7 @@ public class DayHolder extends BaseDayHolder {
         }
 
         if (day.isCurrent()) {
-            //get current day icon height
-            int height;
-
-            //for performance reasos, simply measure the bmp, do not allocate it
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-
-            if (isSelected) {
-                BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDaySelectedIconRes(), options);
-            } else {
-                BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDayIconRes(), options);
-            }
-
-            height = options.outHeight;
-
-            ctvDay.setCompoundDrawablePadding(height * -1);
+            ctvDay.setCompoundDrawablePadding(getCurrentDayIconHeight(isSelected) * -1);
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, isSelected
                     ? calendarView.getCurrentDaySelectedIconRes()
                     : calendarView.getCurrentDayIconRes(), 0, 0);
@@ -59,6 +44,18 @@ public class DayHolder extends BaseDayHolder {
         if(day.isDisabled()){
             ctvDay.setTextColor(calendarView.getDisabledDayTextColor());
         }
+    }
+
+    private int getCurrentDayIconHeight(boolean isSelected){
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+
+        if (isSelected) {
+            BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDaySelectedIconRes(), options);
+        } else {
+            BitmapFactory.decodeResource(calendarView.getContext().getResources(), calendarView.getCurrentDayIconRes(), options);
+        }
+        return options.outHeight;
     }
 
     private void select(Day day) {
