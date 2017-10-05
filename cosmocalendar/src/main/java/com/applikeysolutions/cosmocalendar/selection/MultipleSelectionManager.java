@@ -7,6 +7,8 @@ import com.applikeysolutions.cosmocalendar.selection.criteria.BaseCriteria;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +22,7 @@ public class MultipleSelectionManager extends BaseCriteriaSelectionManager {
     }
 
     public MultipleSelectionManager(BaseCriteria criteria, OnDaySelectedListener onDaySelectedListener) {
-        this(new ArrayList<>(Arrays.asList(criteria)), onDaySelectedListener);
+        this(new ArrayList<>(Collections.singleton(criteria)), onDaySelectedListener);
     }
 
     public MultipleSelectionManager(List<BaseCriteria> criteriaList, OnDaySelectedListener onDaySelectedListener) {
