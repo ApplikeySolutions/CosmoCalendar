@@ -20,7 +20,7 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
 
 # Usage
   ```xml
-  compile 'com.github.applikeysolutions:cosmocalendar:1.0.0'
+  compile 'com.github.applikeysolutions:cosmocalendar:1.0.1'
   ```
 
 # Customization
