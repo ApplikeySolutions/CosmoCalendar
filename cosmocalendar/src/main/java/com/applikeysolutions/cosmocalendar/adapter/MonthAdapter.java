@@ -7,6 +7,7 @@ import com.applikeysolutions.cosmocalendar.adapter.viewholder.MonthHolder;
 import com.applikeysolutions.cosmocalendar.model.Day;
 import com.applikeysolutions.cosmocalendar.model.Month;
 import com.applikeysolutions.cosmocalendar.selection.BaseSelectionManager;
+import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
 import com.applikeysolutions.cosmocalendar.utils.CalendarUtils;
 import com.applikeysolutions.cosmocalendar.utils.DayFlag;
 import com.applikeysolutions.cosmocalendar.view.CalendarView;
@@ -130,6 +131,17 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
 
     public void setConnectedCalendarDays(Set<Long> connectedCalendarDays) {
         setDaysAccordingToSet(connectedCalendarDays, DayFlag.FROM_CONNECTED_CALENDAR);
+    }
+
+    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria){
+        for (Month month : months) {
+            for (Day day : month.getDays()) {
+                if(!day.isDisabled()){
+                    day.setDisabled(CalendarUtils.isDayDisabledByCriteria(day, criteria));
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     private void setDaysAccordingToSet(Set<Long> days, DayFlag dayFlag) {

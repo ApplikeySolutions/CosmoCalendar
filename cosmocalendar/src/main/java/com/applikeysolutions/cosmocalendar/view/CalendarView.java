@@ -39,6 +39,7 @@ import com.applikeysolutions.cosmocalendar.selection.selectionbar.MultipleSelect
 import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceInterface;
 import com.applikeysolutions.cosmocalendar.settings.date.DateInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface;
+import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.utils.CalendarUtils;
 import com.applikeysolutions.customizablecalendar.R;
@@ -522,17 +523,22 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     @Override
     public Set<Long> getDisabledDays() {
-        return null;
+        return settingsManager.getDisabledDays();
     }
 
     @Override
     public Set<Long> getConnectedCalendarDays() {
-        return null;
+        return settingsManager.getConnectedCalendarDays();
     }
 
     @Override
     public Set<Long> getWeekendDays() {
-        return null;
+        return settingsManager.getWeekendDays();
+    }
+
+    @Override
+    public DisabledDaysCriteria getDisabledDaysCriteria() {
+        return settingsManager.getDisabledDaysCriteria();
     }
 
     public void setDisabledDays(Set<Long> disabledDays) {
@@ -548,6 +554,12 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     public void setWeekendDays(Set<Long> weekendDays) {
         settingsManager.setWeekendDays(weekendDays);
         monthAdapter.setWeekendDays(weekendDays);
+    }
+
+    @Override
+    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
+        settingsManager.setDisabledDaysCriteria(criteria);
+        monthAdapter.setDisabledDaysCriteria(criteria);
     }
 
     /**

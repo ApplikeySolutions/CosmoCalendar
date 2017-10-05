@@ -8,6 +8,7 @@ import com.applikeysolutions.cosmocalendar.settings.date.DateInterface;
 import com.applikeysolutions.cosmocalendar.settings.date.DateModel;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsModel;
+import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionModel;
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
@@ -282,6 +283,11 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public DisabledDaysCriteria getDisabledDaysCriteria() {
+        return calendarListsModel.getDisabledDaysCriteria();
+    }
+
+    @Override
     public void setDisabledDays(Set<Long> disabledDays) {
         calendarListsModel.setDisabledDays(disabledDays);
     }
@@ -294,6 +300,11 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setWeekendDays(Set<Long> weekendDays) {
         calendarListsModel.setWeekendDays(weekendDays);
+    }
+
+    @Override
+    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
+        calendarListsModel.setDisabledDaysCriteria(criteria);
     }
 
     @Override

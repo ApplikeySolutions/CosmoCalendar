@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
 import com.applikeysolutions.customizablecalendar.R;
 import com.applikeysolutions.cosmocalendar.model.Day;
 import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceInterface;
@@ -344,6 +345,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public DisabledDaysCriteria getDisabledDaysCriteria() {
+        return calendarView.getDisabledDaysCriteria();
+    }
+
+    @Override
     public void setDisabledDays(Set<Long> disabledDays) {
         calendarView.setDisabledDays(disabledDays);
     }
@@ -356,6 +362,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     @Override
     public void setWeekendDays(Set<Long> weekendDays) {
         calendarView.setWeekendDays(weekendDays);
+    }
+
+    @Override
+    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
+        calendarView.setDisabledDaysCriteria(criteria);
     }
 
     @Override
