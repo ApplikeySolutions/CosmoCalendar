@@ -14,15 +14,16 @@ import android.widget.Toast;
 
 import com.applikeysolutions.cosmocalendar.selection.MultipleSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.criteria.BaseCriteria;
+import com.applikeysolutions.cosmocalendar.selection.criteria.WeekDayCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.CurrentMonthCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.NextMonthCriteria;
-import com.applikeysolutions.cosmocalendar.selection.criteria.WeekDayCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.PreviousMonthCriteria;
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class DefaultCalendarActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -47,6 +48,8 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
 
         initViews();
         createCriterias();
+
+        calendarView.setDisabledDays(Collections.singleton(1507242965000L));
     }
 
     private void initViews() {
