@@ -34,6 +34,12 @@ public interface AppearanceInterface {
 
     int getConnectedDaySelectedTextColor();
 
+    int getConnectedDayIconRes();
+
+    int getConnectedDaySelectedIconRes();
+
+    int getConnectedDayIconPosition();
+
     int getDisabledDayTextColor();
 
     int getSelectionBarMonthTextColor();
@@ -77,6 +83,12 @@ public interface AppearanceInterface {
     void setConnectedDayTextColor(int connectedDayTextColor);
 
     void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor);
+
+    void setConnectedDayIconRes(int connectedDayIconRes);
+
+    void setConnectedDaySelectedIconRes(int connectedDaySelectedIconRes);
+
+    void setConnectedDayIconPosition(int connectedDayIconPosition);
 
     void setDisabledDayTextColor(int disabledDayTextColor);
 

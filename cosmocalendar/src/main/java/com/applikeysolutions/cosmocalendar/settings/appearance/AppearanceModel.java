@@ -47,6 +47,15 @@ public class AppearanceModel implements AppearanceInterface {
     //Text color of connected day selected
     private int connectedDaySelectedTextColor;
 
+    //Icon resource of connected day
+    private int connectedDayIconRes;
+
+    //Icon resource of connected day selected
+    private int connectedDaySelectedIconRes;
+
+    //Position of connected day icon (TOP/BOTTOM)
+    private int connectedDayIconPosition;
+
     //Text color of disabled day
     private int disabledDayTextColor;
 
@@ -152,6 +161,21 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public int getConnectedDaySelectedTextColor() {
         return connectedDaySelectedTextColor;
+    }
+
+    @Override
+    public int getConnectedDayIconRes() {
+        return connectedDayIconRes;
+    }
+
+    @Override
+    public int getConnectedDaySelectedIconRes() {
+        return connectedDaySelectedIconRes;
+    }
+
+    @Override
+    public int getConnectedDayIconPosition() {
+        return connectedDayIconPosition;
     }
 
     @Override
@@ -262,6 +286,21 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
         this.connectedDaySelectedTextColor = connectedDaySelectedTextColor;
+    }
+
+    @Override
+    public void setConnectedDayIconRes(int connectedDayIconRes) {
+        this.connectedDayIconRes = connectedDayIconRes;
+    }
+
+    @Override
+    public void setConnectedDaySelectedIconRes(int connectedDaySelectedIconRes) {
+        this.connectedDaySelectedIconRes = connectedDaySelectedIconRes;
+    }
+
+    @Override
+    public void setConnectedDayIconPosition(int connectedDayIconPosition) {
+        this.connectedDayIconPosition = connectedDayIconPosition;
     }
 
     @Override

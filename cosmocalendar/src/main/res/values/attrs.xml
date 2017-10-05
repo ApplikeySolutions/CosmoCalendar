@@ -43,6 +43,12 @@
 
         <attr name="connectedDayTextColor" format="color" />
         <attr name="connectedDaySelectedTextColor" format="color" />
+        <attr name="connectedDayIconRes" format="reference" />
+        <attr name="connectedDaySelectedIconRes" format="reference" />
+        <attr name="connectedDayIconPosition" format="enum">
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
+        </attr>
 
         <attr name="previousMonthIconRes" format="reference" />
         <attr name="nextMonthIconRes" format="reference" />

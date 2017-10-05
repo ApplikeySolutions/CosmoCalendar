@@ -1,6 +1,8 @@
 package com.applikeysolutions.cosmocalendar.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.view.WindowManager;
 
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
@@ -199,5 +201,12 @@ public final class CalendarUtils {
             }
         }
         return false;
+    }
+
+    public static int getIconHeight(Resources resources, int iconResId){
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(resources, iconResId, options);
+        return options.outHeight;
     }
 }

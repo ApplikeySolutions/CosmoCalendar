@@ -158,6 +158,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int currentDaySelectedIconRes = typedArray.getResourceId(R.styleable.CalendarView_currentDaySelectedIconRes, R.drawable.ic_triangle_white);
         int connectedDayTextColor = typedArray.getColor(R.styleable.CalendarView_connectedDayTextColor, ContextCompat.getColor(getContext(), R.color.default_connected_day_text_color));
         int connectedDaySelectedTextColor = typedArray.getColor(R.styleable.CalendarView_connectedDaySelectedTextColor, ContextCompat.getColor(getContext(), R.color.default_connected_day_selected_text_color));
+        int connectedDayIconRes = typedArray.getResourceId(R.styleable.CalendarView_connectedDayIconRes, 0);
+        int connectedDaySelectedIconRes = typedArray.getResourceId(R.styleable.CalendarView_connectedDaySelectedIconRes, 0);
+        int connectedDayIconPosition = typedArray.getInteger(R.styleable.CalendarView_connectedDayIconPosition, SettingsManager.DEFAULT_CONNECTED_DAY_ICON_POSITION);
         int disabledDayTextColor = typedArray.getColor(R.styleable.CalendarView_disabledDayTextColor, ContextCompat.getColor(getContext(), R.color.default_disabled_day_text_color));
         int selectionBarMonthTextColor = typedArray.getColor(R.styleable.CalendarView_selectionBarMonthTextColor, ContextCompat.getColor(getContext(), R.color.default_selection_bar_month_title_text_color));
         int previousMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_currentDayIconRes, R.drawable.ic_chevron_left_gray);
@@ -176,6 +179,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         settingsManager.setSelectedDayBackgroundEndColor(selectedDayBackgroundEndColor);
         settingsManager.setConnectedDayTextColor(connectedDayTextColor);
         settingsManager.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
+        settingsManager.setConnectedDayIconRes(connectedDayIconRes);
+        settingsManager.setConnectedDaySelectedIconRes(connectedDaySelectedIconRes);
+        settingsManager.setConnectedDayIconPosition(connectedDayIconPosition);
         settingsManager.setDisabledDayTextColor(disabledDayTextColor);
         settingsManager.setSelectionBarMonthTextColor(selectionBarMonthTextColor);
         settingsManager.setCurrentDayTextColor(currentDayTextColor);
@@ -829,6 +835,21 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
+    public int getConnectedDayIconRes() {
+        return settingsManager.getConnectedDayIconRes();
+    }
+
+    @Override
+    public int getConnectedDaySelectedIconRes() {
+        return settingsManager.getConnectedDaySelectedIconRes();
+    }
+
+    @Override
+    public int getConnectedDayIconPosition() {
+        return settingsManager.getConnectedDayIconPosition();
+    }
+
+    @Override
     public int getDisabledDayTextColor() {
         return settingsManager.getDisabledDayTextColor();
     }
@@ -975,6 +996,24 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     @Override
     public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
         settingsManager.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
+        update();
+    }
+
+    @Override
+    public void setConnectedDayIconRes(int connectedDayIconRes) {
+        settingsManager.setConnectedDayIconRes(connectedDayIconRes);
+        update();
+    }
+
+    @Override
+    public void setConnectedDaySelectedIconRes(int connectedDaySelectedIconRes) {
+        settingsManager.setConnectedDaySelectedIconRes(connectedDaySelectedIconRes);
+        update();
+    }
+
+    @Override
+    public void setConnectedDayIconPosition(int connectedDayIconPosition) {
+        settingsManager.setConnectedDayIconPosition(connectedDayIconPosition);
         update();
     }
 

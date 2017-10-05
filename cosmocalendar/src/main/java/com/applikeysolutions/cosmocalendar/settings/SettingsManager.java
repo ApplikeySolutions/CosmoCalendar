@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceInterface;
 import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceModel;
+import com.applikeysolutions.cosmocalendar.settings.appearance.ConnectedDayIconPosition;
 import com.applikeysolutions.cosmocalendar.settings.date.DateInterface;
 import com.applikeysolutions.cosmocalendar.settings.date.DateModel;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface;
@@ -23,6 +24,7 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     public static final int DEFAULT_SELECTION_TYPE = SelectionType.SINGLE;
     public static final int DEFAULT_FIRST_DAY_OF_WEEK = Calendar.MONDAY;
     public static final int DEFAULT_ORIENTATION = LinearLayoutManager.VERTICAL;
+    public static final int DEFAULT_CONNECTED_DAY_ICON_POSITION = ConnectedDayIconPosition.BOTTOM;
 
     //Models
     private AppearanceModel appearanceModel;
@@ -125,6 +127,21 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public int getConnectedDaySelectedTextColor() {
         return appearanceModel.getConnectedDaySelectedTextColor();
+    }
+
+    @Override
+    public int getConnectedDayIconRes() {
+        return appearanceModel.getConnectedDayIconRes();
+    }
+
+    @Override
+    public int getConnectedDaySelectedIconRes() {
+        return appearanceModel.getConnectedDaySelectedIconRes();
+    }
+
+    @Override
+    public int getConnectedDayIconPosition() {
+        return appearanceModel.getConnectedDayIconPosition();
     }
 
     @Override
@@ -235,6 +252,21 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
         appearanceModel.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
+    }
+
+    @Override
+    public void setConnectedDayIconRes(int connectedDayIconRes) {
+        appearanceModel.setConnectedDayIconRes(connectedDayIconRes);
+    }
+
+    @Override
+    public void setConnectedDaySelectedIconRes(int connectedDaySelectedIconRes) {
+        appearanceModel.setConnectedDaySelectedIconRes(connectedDaySelectedIconRes);
+    }
+
+    @Override
+    public void setConnectedDayIconPosition(int connectedDayIconPosition) {
+        appearanceModel.setConnectedDayIconPosition(connectedDayIconPosition);
     }
 
     @Override
