@@ -49,7 +49,7 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
         initViews();
         createCriterias();
 
-        calendarView.setDisabledDays(Collections.singleton(1507242965000L));
+        calendarView.setDisabledDays(Collections.singleton(1507156565000L));
     }
 
     private void initViews() {

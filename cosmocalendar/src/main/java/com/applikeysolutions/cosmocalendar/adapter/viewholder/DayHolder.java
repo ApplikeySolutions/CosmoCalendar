@@ -52,10 +52,12 @@ public class DayHolder extends BaseDayHolder {
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, isSelected
                     ? calendarView.getCurrentDaySelectedIconRes()
                     : calendarView.getCurrentDayIconRes(), 0, 0);
-        } else if(day.isDisabled()) {
-            ctvDay.setTextColor(calendarView.getDisabledDayTextColor());
         } else {
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
+
+        if(day.isDisabled()){
+            ctvDay.setTextColor(calendarView.getDisabledDayTextColor());
         }
     }
 
