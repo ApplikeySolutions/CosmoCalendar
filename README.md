@@ -74,6 +74,12 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
   and customize them:
   * connectedDayTextColor
   * connectedDaySelectedTextColor
+  * connectedDayIconRes;
+  * connectedDaySelectedIconRes;
+  * connectedDayIconPosition (TOP/BOTTOM);
+  ```java
+  calendarView.setConnectedDayIconPosition(ConnectedDayIconPosition.TOP);
+  ```
   
   ### Disabled days
   You can add days so that you can not select them:
