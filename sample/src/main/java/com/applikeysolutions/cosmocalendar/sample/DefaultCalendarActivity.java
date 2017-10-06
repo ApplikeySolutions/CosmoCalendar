@@ -18,7 +18,7 @@ import com.applikeysolutions.cosmocalendar.selection.criteria.WeekDayCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.CurrentMonthCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.NextMonthCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.PreviousMonthCriteria;
-import com.applikeysolutions.cosmocalendar.utils.SelectionTypeDef;
+import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
 import java.util.ArrayList;
@@ -176,25 +176,25 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
                 break;
 
             case R.id.rb_single:
-                calendarView.setSelectionType(SelectionTypeDef.SINGLE);
+                calendarView.setSelectionType(SelectionType.SINGLE);
                 menuFridays.setVisible(false);
                 menuThreeMonth.setVisible(false);
                 break;
 
             case R.id.rb_multiple:
-                calendarView.setSelectionType(SelectionTypeDef.MULTIPLE);
+                calendarView.setSelectionType(SelectionType.MULTIPLE);
                 menuFridays.setVisible(true);
                 menuThreeMonth.setVisible(true);
                 break;
 
             case R.id.rb_range:
-                calendarView.setSelectionType(SelectionTypeDef.RANGE);
+                calendarView.setSelectionType(SelectionType.RANGE);
                 menuFridays.setVisible(false);
                 menuThreeMonth.setVisible(false);
                 break;
 
             case R.id.rb_none:
-                calendarView.setSelectionType(SelectionTypeDef.NONE);
+                calendarView.setSelectionType(SelectionType.NONE);
                 menuFridays.setVisible(false);
                 menuThreeMonth.setVisible(false);
                 break;

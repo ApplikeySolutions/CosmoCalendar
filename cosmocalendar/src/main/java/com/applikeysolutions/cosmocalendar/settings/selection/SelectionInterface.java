@@ -1,11 +1,11 @@
 package com.applikeysolutions.cosmocalendar.settings.selection;
 
-import com.applikeysolutions.cosmocalendar.utils.SelectionTypeDef;
+import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 
 public interface SelectionInterface {
 
-    @SelectionTypeDef.SelectionType
+    @SelectionType
     int getSelectionType();
 
-    void setSelectionType(@SelectionTypeDef.SelectionType int selectionType);
+    void setSelectionType(@SelectionType int selectionType);
 }

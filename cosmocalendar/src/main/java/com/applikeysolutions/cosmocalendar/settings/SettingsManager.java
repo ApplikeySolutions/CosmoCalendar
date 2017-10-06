@@ -12,7 +12,7 @@ import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsModel;
 import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionModel;
-import com.applikeysolutions.cosmocalendar.utils.SelectionTypeDef;
+import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 
 import java.util.Calendar;
 import java.util.Set;
@@ -21,7 +21,7 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
 
     //Default values
     public static final int DEFAULT_MONTH_COUNT = 20;
-    public static final int DEFAULT_SELECTION_TYPE = SelectionTypeDef.SINGLE;
+    public static final int DEFAULT_SELECTION_TYPE = SelectionType.SINGLE;
     public static final int DEFAULT_FIRST_DAY_OF_WEEK = Calendar.MONDAY;
     public static final int DEFAULT_ORIENTATION = LinearLayoutManager.VERTICAL;
     public static final int DEFAULT_CONNECTED_DAY_ICON_POSITION = ConnectedDayIconPosition.BOTTOM;
@@ -40,13 +40,13 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
-    @SelectionTypeDef.SelectionType
+    @SelectionType
     public int getSelectionType() {
         return selectionModel.getSelectionType();
     }
 
     @Override
-    public void setSelectionType(@SelectionTypeDef.SelectionType int selectionType) {
+    public void setSelectionType(@SelectionType int selectionType) {
         selectionModel.setSelectionType(selectionType);
     }
 

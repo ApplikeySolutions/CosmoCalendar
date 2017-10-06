@@ -1,21 +1,21 @@
 package com.applikeysolutions.cosmocalendar.settings.selection;
 
-import com.applikeysolutions.cosmocalendar.utils.SelectionTypeDef;
+import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 
 public class SelectionModel implements SelectionInterface {
 
     //Selecton type SINGLE, MULTIPLE, RANGE
-    @SelectionTypeDef.SelectionType
+    @SelectionType
     private int selectionType;
 
     @Override
-    @SelectionTypeDef.SelectionType
+    @SelectionType
     public int getSelectionType() {
         return selectionType;
     }
 
     @Override
-    public void setSelectionType(@SelectionTypeDef.SelectionType int selectionType) {
+    public void setSelectionType(@SelectionType int selectionType) {
         this.selectionType = selectionType;
     }
 }
