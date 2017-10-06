@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.applikeysolutions.cosmocalendar.selection.NoneSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.selectionbar.SelectionBarItem;
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
 import com.applikeysolutions.cosmocalendar.model.Day;
@@ -347,6 +348,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
             case SelectionType.RANGE:
                 selectionManager = new RangeSelectionManager(this);
+                break;
+
+            case SelectionType.NONE:
+                selectionManager = new NoneSelectionManager();
                 break;
         }
     }

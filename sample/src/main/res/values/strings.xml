@@ -12,6 +12,7 @@
     <string name="single">Single</string>
     <string name="multiple">Multiple</string>
     <string name="range">Range</string>
+    <string name="none">None</string>
 
     <!-- MENU -->
     <string name="select_all_fridays">Select All Fridays</string>
