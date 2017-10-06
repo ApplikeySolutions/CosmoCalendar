@@ -47,7 +47,7 @@ import com.applikeysolutions.customizablecalendar.R;
 import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
 import com.applikeysolutions.cosmocalendar.model.Month;
 import com.applikeysolutions.cosmocalendar.selection.RangeSelectionManager;
-import com.applikeysolutions.cosmocalendar.utils.SelectionType;
+import com.applikeysolutions.cosmocalendar.utils.SelectionTypeDef;
 import com.applikeysolutions.cosmocalendar.utils.WeekDay;
 import com.applikeysolutions.cosmocalendar.utils.snap.GravitySnapHelper;
 import com.applikeysolutions.cosmocalendar.view.customviews.CircleAnimationTextView;
@@ -338,19 +338,19 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     private void setSelectionManager() {
         switch (getSelectionType()) {
-            case SelectionType.SINGLE:
+            case SelectionTypeDef.SINGLE:
                 selectionManager = new SingleSelectionManager(this);
                 break;
 
-            case SelectionType.MULTIPLE:
+            case SelectionTypeDef.MULTIPLE:
                 selectionManager = new MultipleSelectionManager(this);
                 break;
 
-            case SelectionType.RANGE:
+            case SelectionTypeDef.RANGE:
                 selectionManager = new RangeSelectionManager(this);
                 break;
 
-            case SelectionType.NONE:
+            case SelectionTypeDef.NONE:
                 selectionManager = new NoneSelectionManager();
                 break;
         }
@@ -657,11 +657,11 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      */
     private void displaySelectedDays() {
         switch (settingsManager.getSelectionType()) {
-            case SelectionType.MULTIPLE:
+            case SelectionTypeDef.MULTIPLE:
                 displaySelectedDaysMultiple();
                 break;
 
-            case SelectionType.RANGE:
+            case SelectionTypeDef.RANGE:
                 displaySelectedDaysRange();
                 break;
 
@@ -718,7 +718,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      * @return
      */
     private boolean needToShowSelectedDaysRange() {
-        if (getCalendarOrientation() == OrientationHelper.HORIZONTAL && getSelectionType() == SelectionType.RANGE) {
+        if (getCalendarOrientation() == OrientationHelper.HORIZONTAL && getSelectionType() == SelectionTypeDef.RANGE) {
             if (selectionManager instanceof RangeSelectionManager) {
                 if (((RangeSelectionManager) selectionManager).getDays() != null) {
                     return true;
@@ -733,17 +733,18 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      */
     private void setSelectionBarVisibility() {
         flBottomSelectionBar.setVisibility(getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.VISIBLE : View.GONE);
-        rvMultipleSelectedList.setVisibility(getCalendarOrientation() == OrientationHelper.HORIZONTAL && getSelectionType() == SelectionType.MULTIPLE ? View.VISIBLE : View.GONE);
+        rvMultipleSelectedList.setVisibility(getCalendarOrientation() == OrientationHelper.HORIZONTAL && getSelectionType() == SelectionTypeDef.MULTIPLE ? View.VISIBLE : View.GONE);
         llRangeSelection.setVisibility(needToShowSelectedDaysRange() ? View.VISIBLE : View.GONE);
     }
 
     @Override
+    @SelectionTypeDef.SelectionType
     public int getSelectionType() {
         return settingsManager.getSelectionType();
     }
 
     @Override
-    public void setSelectionType(int selectionType) {
+    public void setSelectionType(@SelectionTypeDef.SelectionType int selectionType) {
         settingsManager.setSelectionType(selectionType);
         setSelectionManager();
         monthAdapter.setSelectionManager(selectionManager);
