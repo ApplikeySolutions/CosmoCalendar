@@ -17,18 +17,16 @@ import java.util.List;
 
 public class FetchMonthsAsyncTask extends AsyncTask<FetchMonthsAsyncTask.FetchParams, Void, List<Month>> {
 
-    Month month;
-    boolean future;
-    SettingsManager settingsManager;
-    MonthAdapter monthAdapter;
-    int defaultMonthCount;
+    private boolean future;
+    private MonthAdapter monthAdapter;
+    private int defaultMonthCount;
 
     @Override
     protected List<Month> doInBackground(FetchParams... fetchParams) {
         FetchParams params = fetchParams[0];
-        month = params.month;
+        Month month = params.month;
         future = params.future;
-        settingsManager = params.settingsManager;
+        SettingsManager settingsManager = params.settingsManager;
         monthAdapter = params.monthAdapter;
         defaultMonthCount = params.defaultMonthCount;
 
