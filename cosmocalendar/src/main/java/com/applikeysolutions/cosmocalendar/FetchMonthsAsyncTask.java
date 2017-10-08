@@ -63,11 +63,11 @@ public class FetchMonthsAsyncTask extends AsyncTask<FetchMonthsAsyncTask.FetchPa
     }
 
     public static class FetchParams {
-        boolean future;
-        Month month;
-        SettingsManager settingsManager;
-        MonthAdapter monthAdapter;
-        int defaultMonthCount;
+        private final boolean future;
+        private final Month month;
+        private final SettingsManager settingsManager;
+        private final MonthAdapter monthAdapter;
+        private final int defaultMonthCount;
 
         public FetchParams(boolean future, Month month, SettingsManager settingsManager, MonthAdapter monthAdapter, int defaultMonthCount) {
             this.future = future;

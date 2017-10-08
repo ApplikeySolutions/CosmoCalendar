@@ -472,10 +472,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
             lastVisibleMonthPosition = firstVisibleItemPosition;
 
             if (firstVisibleItemPosition < 2) {
-                //loadMoreMonths(false);
                 loadAsyncMonths(false);
             } else if (firstVisibleItemPosition >= totalItemCount - 2) {
-                //loadMoreMonths(true);
                 loadAsyncMonths(true);
             }
         }
