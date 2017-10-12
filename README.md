@@ -14,13 +14,14 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
    * [Weekend days](#weekend-days)
    * [Connected days](#connected-days)
    * [Disabled days](#disabled-days)
+   * [Month change listener](#month-change-listener)
    * [Calendar dialog](#calendar-dialog)
 * [Demo](#demo)
 * [License](#license)
 
 # Usage
   ```xml
-  compile 'com.github.applikeysolutions:cosmocalendar:1.0.1'
+  compile 'com.github.applikeysolutions:cosmocalendar:1.0.2'
   ```
 
 # Customization
@@ -37,7 +38,7 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
   * showDaysOfWeekTitle - Defines if we need to display week day title for whole calendar
   
   ### Selection
-  * selectionType - Possible values: SINGLE, MULTIPLE, RANGE
+  * selectionType - Possible values: SINGLE, MULTIPLE, RANGE, NONE
   * selectedDayTextColor
   * selectedDayBackgroundColor
   * selectedDayBackgroundStartColor - Background color of START day from selected range
@@ -99,6 +100,16 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
   ```
   
   * disabledDayTextColor - Text color of disabled day
+  
+  ### Month change listener
+  ```java
+  calendarView.setOnMonthChangeListener(new OnMonthChangeListener() {
+            @Override
+            public void onMonthChanged(Month month) {
+                
+            }
+        });
+  ```
 
   ### Calendar dialog
    ```java
