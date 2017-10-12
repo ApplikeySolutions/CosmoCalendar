@@ -4,7 +4,7 @@ import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 
 public class SelectionModel implements SelectionInterface {
 
-    //Selecton type SINGLE, MULTIPLE, RANGE
+    //Selecton type SINGLE, MULTIPLE, RANGE, NONE
     @SelectionType
     private int selectionType;
 

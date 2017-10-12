@@ -6,15 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.applikeysolutions.cosmocalendar.listeners.OnMonthChangeListener;
-import com.applikeysolutions.cosmocalendar.model.Month;
 import com.applikeysolutions.cosmocalendar.selection.MultipleSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.criteria.BaseCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.WeekDayCriteria;
@@ -26,7 +23,6 @@ import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 public class DefaultCalendarActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -51,13 +47,6 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
 
         initViews();
         createCriterias();
-        calendarView.setDisabledDays(Collections.singleton(System.currentTimeMillis()));
-        calendarView.setOnMonthChangeListener(new OnMonthChangeListener() {
-            @Override
-            public void onMonthChanged(Month month) {
-                Log.d("GGGGGGG", month.getMonthName());
-            }
-        });
     }
 
     private void initViews() {
