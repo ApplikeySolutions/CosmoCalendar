@@ -3,9 +3,8 @@ package com.applikeysolutions.cosmocalendar.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,30 +28,34 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.applikeysolutions.cosmocalendar.selection.NoneSelectionManager;
+import com.applikeysolutions.cosmocalendar.FetchMonthsAsyncTask;
+import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
+import com.applikeysolutions.cosmocalendar.listeners.OnMonthChangeListener;
 import com.applikeysolutions.cosmocalendar.selection.selectionbar.SelectionBarItem;
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
 import com.applikeysolutions.cosmocalendar.model.Day;
+import com.applikeysolutions.cosmocalendar.model.Month;
 import com.applikeysolutions.cosmocalendar.selection.BaseSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.MultipleSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.OnDaySelectedListener;
+import com.applikeysolutions.cosmocalendar.selection.RangeSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.SingleSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.selectionbar.MultipleSelectionBarAdapter;
+import com.applikeysolutions.cosmocalendar.selection.selectionbar.SelectionBarItem;
+import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
 import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceInterface;
 import com.applikeysolutions.cosmocalendar.settings.date.DateInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.utils.CalendarUtils;
-import com.applikeysolutions.customizablecalendar.R;
-import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
-import com.applikeysolutions.cosmocalendar.model.Month;
-import com.applikeysolutions.cosmocalendar.selection.RangeSelectionManager;
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.applikeysolutions.cosmocalendar.utils.WeekDay;
 import com.applikeysolutions.cosmocalendar.utils.snap.GravitySnapHelper;
 import com.applikeysolutions.cosmocalendar.view.customviews.CircleAnimationTextView;
 import com.applikeysolutions.cosmocalendar.view.customviews.SquareTextView;
 import com.applikeysolutions.cosmocalendar.view.delegate.MonthDelegate;
+import com.applikeysolutions.customizablecalendar.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,7 +64,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CalendarView extends RelativeLayout implements OnDaySelectedListener,
-        AppearanceInterface, DateInterface, CalendarListsInterface, SelectionInterface, MultipleSelectionBarAdapter.ListItemClickListener {
+        AppearanceInterface, DateInterface, CalendarListsInterface, SelectionInterface, MultipleSelectionBarAdapter.ListItemClickListener, GravitySnapHelper.SnapListener {
 
     private List<Day> selectedDays;
 
@@ -88,17 +91,13 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private BaseSelectionManager selectionManager;
     private GravitySnapHelper snapHelper;
 
-    private int lastVisibleMonthPosition = SettingsManager.DEFAULT_MONTH_COUNT / 2;
-    private boolean isUpdating = false;
+    //Listeners
+    private OnMonthChangeListener onMonthChangeListener;
+    private Month previousSelectedMonth;
 
-    private final Handler dataUpdateNotifier = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            monthAdapter.notifyItemRangeInserted(msg.arg1, msg.arg2);
-            isUpdating = false;
-            return true;
-        }
-    });
+    private int lastVisibleMonthPosition = SettingsManager.DEFAULT_MONTH_COUNT / 2;
+
+    private FetchMonthsAsyncTask asyncTask;
 
     public CalendarView(Context context) {
         super(context);
@@ -119,6 +118,15 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     public CalendarView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         handleAttributes(attrs, defStyleAttr, defStyleRes);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        if(asyncTask != null && !asyncTask.isCancelled()){
+            asyncTask.cancel(false);
+        }
     }
 
     private void handleAttributes(AttributeSet attrs, int defStyle, int defStyleRes) {
@@ -476,9 +484,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
             lastVisibleMonthPosition = firstVisibleItemPosition;
 
             if (firstVisibleItemPosition < 2) {
-                loadMoreMonths(false);
+                loadAsyncMonths(false);
             } else if (firstVisibleItemPosition >= totalItemCount - 2) {
-                loadMoreMonths(true);
+                loadAsyncMonths(true);
             }
         }
     };
@@ -491,45 +499,20 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         }
     }
 
-    private void loadMoreMonths(final boolean future) {
-        if (isUpdating) {
+    private void loadAsyncMonths(final boolean future){
+        if(asyncTask != null && (asyncTask.getStatus() == AsyncTask.Status.PENDING || asyncTask.getStatus() == AsyncTask.Status.RUNNING))
             return;
+
+        asyncTask = new FetchMonthsAsyncTask();
+        Month month;
+
+        if (future) {
+            month = monthAdapter.getData().get(monthAdapter.getData().size() - 1);
+        } else {
+            month = monthAdapter.getData().get(0);
         }
-        isUpdating = true;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Month month;
-                if (future) {
-                    month = monthAdapter.getData().get(monthAdapter.getData().size() - 1);
-                } else {
-                    month = monthAdapter.getData().get(0);
-                }
-                final Calendar calendar = Calendar.getInstance();
-                calendar.setTime(month.getFirstDay().getCalendar().getTime());
-                final List<Month> result = new ArrayList<>();
-                for (int i = 0; i < SettingsManager.DEFAULT_MONTH_COUNT; i++) {
-                    calendar.add(Calendar.MONTH, future ? 1 : -1);
-                    Month newMonth = CalendarUtils.createMonth(calendar.getTime(), settingsManager);
-                    if (future) {
-                        result.add(newMonth);
-                    } else {
-                        result.add(0, newMonth);
-                    }
-                }
-                if (!result.isEmpty()) {
-                    if (future) {
-                        monthAdapter.getData().addAll(result);
-                        dataUpdateNotifier.sendMessage(Message.obtain(dataUpdateNotifier, 0, monthAdapter.getData().size() - 1, SettingsManager.DEFAULT_MONTH_COUNT));
-                    } else {
-                        monthAdapter.getData().addAll(0, result);
-                        dataUpdateNotifier.sendMessage(Message.obtain(dataUpdateNotifier, 0, 0, SettingsManager.DEFAULT_MONTH_COUNT));
-                    }
-                } else {
-                    isUpdating = false;
-                }
-            }
-        }).start();
+
+        asyncTask.execute(new FetchMonthsAsyncTask.FetchParams(future, month, settingsManager, monthAdapter, SettingsManager.DEFAULT_MONTH_COUNT));
     }
 
     @Override
@@ -1082,7 +1065,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private void changeSnapHelper() {
         rvMonths.setOnFlingListener(null);
         if (snapHelper == null) {
-            snapHelper = new GravitySnapHelper(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START, true);
+            snapHelper = new GravitySnapHelper(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START, true, this);
             snapHelper.attachToRecyclerView(rvMonths);
         } else {
             snapHelper.setGravity(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START);
@@ -1097,6 +1080,20 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         if (getSelectionManager() instanceof MultipleSelectionManager) {
             ((MultipleSelectionManager) getSelectionManager()).removeDay(day);
             monthAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setOnMonthChangeListener(OnMonthChangeListener onMonthChangeListener){
+        this.onMonthChangeListener = onMonthChangeListener;
+    }
+
+    @Override
+    public void onSnap(int position) {
+        Month month = monthAdapter.getData().get(position);
+        if(onMonthChangeListener != null
+                && (previousSelectedMonth == null || !previousSelectedMonth.getMonthName().equals(month.getMonthName()))) {
+                onMonthChangeListener.onMonthChanged(month);
+            previousSelectedMonth = month;
         }
     }
 }
