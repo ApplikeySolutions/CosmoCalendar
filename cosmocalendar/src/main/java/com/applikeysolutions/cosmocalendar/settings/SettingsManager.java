@@ -40,12 +40,13 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    @SelectionType
     public int getSelectionType() {
         return selectionModel.getSelectionType();
     }
 
     @Override
-    public void setSelectionType(int selectionType) {
+    public void setSelectionType(@SelectionType int selectionType) {
         selectionModel.setSelectionType(selectionType);
     }
 

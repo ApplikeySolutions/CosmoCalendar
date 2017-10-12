@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
+import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.applikeysolutions.customizablecalendar.R;
 import com.applikeysolutions.cosmocalendar.model.Day;
 import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceInterface;
@@ -100,12 +101,13 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
 
 
     @Override
+    @SelectionType
     public int getSelectionType() {
         return calendarView.getSelectionType();
     }
 
     @Override
-    public void setSelectionType(int selectionType) {
+    public void setSelectionType(@SelectionType int selectionType) {
         calendarView.setSelectionType(selectionType);
     }
 

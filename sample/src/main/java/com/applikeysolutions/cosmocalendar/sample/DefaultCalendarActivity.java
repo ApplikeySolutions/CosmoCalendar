@@ -26,6 +26,7 @@ import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class DefaultCalendarActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -50,7 +51,7 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
 
         initViews();
         createCriterias();
-
+        calendarView.setDisabledDays(Collections.singleton(System.currentTimeMillis()));
         calendarView.setOnMonthChangeListener(new OnMonthChangeListener() {
             @Override
             public void onMonthChanged(Month month) {
@@ -197,6 +198,12 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
 
             case R.id.rb_range:
                 calendarView.setSelectionType(SelectionType.RANGE);
+                menuFridays.setVisible(false);
+                menuThreeMonth.setVisible(false);
+                break;
+
+            case R.id.rb_none:
+                calendarView.setSelectionType(SelectionType.NONE);
                 menuFridays.setVisible(false);
                 menuThreeMonth.setVisible(false);
                 break;

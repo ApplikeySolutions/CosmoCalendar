@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.applikeysolutions.cosmocalendar.selection.NoneSelectionManager;
 import com.applikeysolutions.cosmocalendar.FetchMonthsAsyncTask;
 import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
 import com.applikeysolutions.cosmocalendar.listeners.OnMonthChangeListener;
@@ -355,6 +356,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
             case SelectionType.RANGE:
                 selectionManager = new RangeSelectionManager(this);
+                break;
+
+            case SelectionType.NONE:
+                selectionManager = new NoneSelectionManager();
                 break;
         }
     }
@@ -716,12 +721,13 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
+    @SelectionType
     public int getSelectionType() {
         return settingsManager.getSelectionType();
     }
 
     @Override
-    public void setSelectionType(int selectionType) {
+    public void setSelectionType(@SelectionType int selectionType) {
         settingsManager.setSelectionType(selectionType);
         setSelectionManager();
         monthAdapter.setSelectionManager(selectionManager);
