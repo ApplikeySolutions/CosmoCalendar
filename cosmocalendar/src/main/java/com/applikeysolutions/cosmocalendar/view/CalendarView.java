@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.applikeysolutions.cosmocalendar.listeners.OnMonthChangeListener;
 import com.applikeysolutions.cosmocalendar.selection.selectionbar.SelectionBarItem;
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
 import com.applikeysolutions.cosmocalendar.model.Day;
@@ -60,7 +61,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CalendarView extends RelativeLayout implements OnDaySelectedListener,
-        AppearanceInterface, DateInterface, CalendarListsInterface, SelectionInterface, MultipleSelectionBarAdapter.ListItemClickListener {
+        AppearanceInterface, DateInterface, CalendarListsInterface, SelectionInterface, MultipleSelectionBarAdapter.ListItemClickListener, GravitySnapHelper.SnapListener {
 
     private List<Day> selectedDays;
 
@@ -86,6 +87,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private SettingsManager settingsManager;
     private BaseSelectionManager selectionManager;
     private GravitySnapHelper snapHelper;
+
+    //Listeners
+    private OnMonthChangeListener onMonthChangeListener;
+    private Month previousSelectedMonth;
 
     private int lastVisibleMonthPosition = SettingsManager.DEFAULT_MONTH_COUNT / 2;
     private boolean isUpdating = false;
@@ -1076,7 +1081,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private void changeSnapHelper() {
         rvMonths.setOnFlingListener(null);
         if (snapHelper == null) {
-            snapHelper = new GravitySnapHelper(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START, true);
+            snapHelper = new GravitySnapHelper(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START, true, this);
             snapHelper.attachToRecyclerView(rvMonths);
         } else {
             snapHelper.setGravity(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START);
@@ -1091,6 +1096,20 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         if (getSelectionManager() instanceof MultipleSelectionManager) {
             ((MultipleSelectionManager) getSelectionManager()).removeDay(day);
             monthAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setOnMonthChangeListener(OnMonthChangeListener onMonthChangeListener){
+        this.onMonthChangeListener = onMonthChangeListener;
+    }
+
+    @Override
+    public void onSnap(int position) {
+        Month month = monthAdapter.getData().get(position);
+        if(onMonthChangeListener != null
+                && (previousSelectedMonth == null || !previousSelectedMonth.getMonthName().equals(month.getMonthName()))) {
+                onMonthChangeListener.onMonthChanged(month);
+            previousSelectedMonth = month;
         }
     }
 }
