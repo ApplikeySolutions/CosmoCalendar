@@ -92,11 +92,14 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
   #### Disabled days criteria
   - month criteria range:
   ```java
-  calendarView.setDisabledDaysCriteria(new DisabledDaysCriteria(1, 5, DisabledDaysCriteriaType.DAYS_OF_MONTH)); //from 1st to 5th day of the month
+  //from 1st to 5th day of the month
+  calendarView.setDisabledDaysCriteria(new DisabledDaysCriteria(1, 5, DisabledDaysCriteriaType.DAYS_OF_MONTH)); 
   ```
   - week criteria range:
   ```java
-  calendarView.setDisabledDaysCriteria(new DisabledDaysCriteria(1, 5, DisabledDaysCriteriaType.DAYS_OF_MONTH)); //from 1st to 5th day of the month
+  //from Monday to Friday
+  DisabledDaysCriteria criteria = new DisabledDaysCriteria(Calendar.MONDAY, Calendar.FRIDAY, DisabledDaysCriteriaType.DAYS_OF_WEEK);
+  calendarView.setDisabledDaysCriteria(criteria);
   ```
   
   * disabledDayTextColor - Text color of disabled day
