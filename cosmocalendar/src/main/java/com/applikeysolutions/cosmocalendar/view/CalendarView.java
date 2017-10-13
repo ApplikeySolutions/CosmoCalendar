@@ -57,6 +57,7 @@ import com.applikeysolutions.customizablecalendar.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -574,11 +575,11 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      */
     public List<Day> getSelectedDays() {
         List<Day> selectedDays = new ArrayList<>();
-        for (Month month : monthAdapter.getData()) {
-            for (Day day : month.getDaysWithoutTitlesAndOnlyCurrent()) {
-                if (selectionManager.isDaySelected(day)) {
-                    selectedDays.add(day);
-                }
+        for(Iterator<Month> monthIterator = monthAdapter.getData().iterator(); monthIterator.hasNext();) {
+            Month month = monthIterator.next();
+            for(Iterator<Day> dayIterator = month.getDaysWithoutTitlesAndOnlyCurrent().iterator(); dayIterator.hasNext();) {
+                Day day = dayIterator.next();
+                selectedDays.add(day);
             }
         }
         return selectedDays;
