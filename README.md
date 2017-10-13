@@ -17,6 +17,8 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
    * [Month change listener](#month-change-listener)
    * [Calendar dialog](#calendar-dialog)
 * [Demo](#demo)
+* [Release Notes](#release-notes)
+* [Contact Us](#contact-us)
 * [License](#license)
 
 # Usage
@@ -129,6 +131,25 @@ Single Choice             |  Multiple
 ![](pictures/Calendar-single_2.jpg)  |  ![](pictures/Calendar-multiple-years_2.jpg)
 Range             |  Customized
 ![](pictures/Calendar-range-years_2.jpg)  |  ![](pictures/Calendar-dialogue-dark_2.jpg)
+
+# Release Notes
+
+Version 1.0.0
+- Release version.
+
+Version 1.0.1
+- Functionality optimization
+- Added disabled days criteria feature
+- Added more customization for connected days (selected/unselected icon, top/bottom position for icon)
+
+Version 1.0.2
+- Added "NONE" selection type
+- The functionality of creating months is optimized
+- Added OnMonthChangeListener
+
+# Contact Us
+
+You can always contact us via github@applikey.biz We are open for any inquiries regarding our libraries and controls, new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy if you write us your feedback and let us know about it!
 
 # License
 
