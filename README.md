@@ -134,15 +134,15 @@ Range             |  Customized
 
 # Release Notes
 
-Version 1.0.0
+### 1.0.0
 - Release version.
 
-Version 1.0.1
+### 1.0.1
 - Functionality optimization
 - Added disabled days criteria feature
 - Added more customization for connected days (selected/unselected icon, top/bottom position for icon)
 
-Version 1.0.2
+### 1.0.2
 - Added "NONE" selection type
 - The functionality of creating months is optimized
 - Added OnMonthChangeListener
