@@ -45,6 +45,8 @@ import com.applikeysolutions.cosmocalendar.settings.appearance.AppearanceInterfa
 import com.applikeysolutions.cosmocalendar.settings.date.DateInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDays;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDaysManager;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.utils.CalendarUtils;
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
@@ -164,8 +166,6 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int currentDayTextColor = typedArray.getColor(R.styleable.CalendarView_currentDayTextColor, ContextCompat.getColor(getContext(), R.color.default_day_text_color));
         int currentDayIconRes = typedArray.getResourceId(R.styleable.CalendarView_currentDayIconRes, R.drawable.ic_triangle_green);
         int currentDaySelectedIconRes = typedArray.getResourceId(R.styleable.CalendarView_currentDaySelectedIconRes, R.drawable.ic_triangle_white);
-        int connectedDayTextColor = typedArray.getColor(R.styleable.CalendarView_connectedDayTextColor, ContextCompat.getColor(getContext(), R.color.default_connected_day_text_color));
-        int connectedDaySelectedTextColor = typedArray.getColor(R.styleable.CalendarView_connectedDaySelectedTextColor, ContextCompat.getColor(getContext(), R.color.default_connected_day_selected_text_color));
         int connectedDayIconRes = typedArray.getResourceId(R.styleable.CalendarView_connectedDayIconRes, 0);
         int connectedDaySelectedIconRes = typedArray.getResourceId(R.styleable.CalendarView_connectedDaySelectedIconRes, 0);
         int connectedDayIconPosition = typedArray.getInteger(R.styleable.CalendarView_connectedDayIconPosition, SettingsManager.DEFAULT_CONNECTED_DAY_ICON_POSITION);
@@ -185,8 +185,6 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         settingsManager.setSelectedDayBackgroundColor(selectedDayBackgroundColor);
         settingsManager.setSelectedDayBackgroundStartColor(selectedDayBackgroundStartColor);
         settingsManager.setSelectedDayBackgroundEndColor(selectedDayBackgroundEndColor);
-        settingsManager.setConnectedDayTextColor(connectedDayTextColor);
-        settingsManager.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
         settingsManager.setConnectedDayIconRes(connectedDayIconRes);
         settingsManager.setConnectedDaySelectedIconRes(connectedDaySelectedIconRes);
         settingsManager.setConnectedDayIconPosition(connectedDayIconPosition);
@@ -520,8 +518,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
-    public Set<Long> getConnectedCalendarDays() {
-        return settingsManager.getConnectedCalendarDays();
+    public ConnectedDaysManager getConnectedDaysManager() {
+        return settingsManager.getConnectedDaysManager();
     }
 
     @Override
@@ -539,11 +537,6 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         monthAdapter.setDisabledDays(disabledDays);
     }
 
-    public void setConnectedCalendarDays(Set<Long> connectedCalendarDays) {
-        settingsManager.setConnectedCalendarDays(connectedCalendarDays);
-        monthAdapter.setConnectedCalendarDays(connectedCalendarDays);
-    }
-
     public void setWeekendDays(Set<Long> weekendDays) {
         settingsManager.setWeekendDays(weekendDays);
         monthAdapter.setWeekendDays(weekendDays);
@@ -553,6 +546,12 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         settingsManager.setDisabledDaysCriteria(criteria);
         monthAdapter.setDisabledDaysCriteria(criteria);
+    }
+
+    @Override
+    public void addConnectedDays(ConnectedDays connectedDays) {
+        settingsManager.getConnectedDaysManager().addConnectedDays(connectedDays);
+        recreateInitialMonth();
     }
 
     /**
@@ -813,16 +812,6 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
-    public int getConnectedDayTextColor() {
-        return settingsManager.getConnectedDayTextColor();
-    }
-
-    @Override
-    public int getConnectedDaySelectedTextColor() {
-        return settingsManager.getConnectedDaySelectedTextColor();
-    }
-
-    @Override
     public int getConnectedDayIconRes() {
         return settingsManager.getConnectedDayIconRes();
     }
@@ -972,18 +961,6 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         }
 
         setSelectionBarVisibility();
-        update();
-    }
-
-    @Override
-    public void setConnectedDayTextColor(int connectedDayTextColor) {
-        settingsManager.setConnectedDayTextColor(connectedDayTextColor);
-        update();
-    }
-
-    @Override
-    public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
-        settingsManager.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
         update();
     }
 

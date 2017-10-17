@@ -10,6 +10,8 @@ import com.applikeysolutions.cosmocalendar.settings.date.DateModel;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface;
 import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsModel;
 import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDays;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDaysManager;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionModel;
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
@@ -118,16 +120,6 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public int getCalendarOrientation() {
         return appearanceModel.getCalendarOrientation();
-    }
-
-    @Override
-    public int getConnectedDayTextColor() {
-        return appearanceModel.getConnectedDayTextColor();
-    }
-
-    @Override
-    public int getConnectedDaySelectedTextColor() {
-        return appearanceModel.getConnectedDaySelectedTextColor();
     }
 
     @Override
@@ -246,16 +238,6 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
-    public void setConnectedDayTextColor(int connectedDayTextColor) {
-        appearanceModel.setConnectedDayTextColor(connectedDayTextColor);
-    }
-
-    @Override
-    public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
-        appearanceModel.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
-    }
-
-    @Override
     public void setConnectedDayIconRes(int connectedDayIconRes) {
         appearanceModel.setConnectedDayIconRes(connectedDayIconRes);
     }
@@ -306,8 +288,8 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
-    public Set<Long> getConnectedCalendarDays() {
-        return calendarListsModel.getConnectedCalendarDays();
+    public ConnectedDaysManager getConnectedDaysManager() {
+        return calendarListsModel.getConnectedDaysManager();
     }
 
     @Override
@@ -326,11 +308,6 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
-    public void setConnectedCalendarDays(Set<Long> connectedCalendarDays) {
-        calendarListsModel.setConnectedCalendarDays(connectedCalendarDays);
-    }
-
-    @Override
     public void setWeekendDays(Set<Long> weekendDays) {
         calendarListsModel.setWeekendDays(weekendDays);
     }
@@ -338,6 +315,11 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         calendarListsModel.setDisabledDaysCriteria(criteria);
+    }
+
+    @Override
+    public void addConnectedDays(ConnectedDays connectedDays) {
+        calendarListsModel.addConnectedDays(connectedDays);
     }
 
     @Override

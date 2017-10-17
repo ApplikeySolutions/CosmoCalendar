@@ -30,10 +30,6 @@ public interface AppearanceInterface {
 
     int getCalendarOrientation();
 
-    int getConnectedDayTextColor();
-
-    int getConnectedDaySelectedTextColor();
-
     int getConnectedDayIconRes();
 
     int getConnectedDaySelectedIconRes();
@@ -79,10 +75,6 @@ public interface AppearanceInterface {
     void setCurrentDaySelectedIconRes(int currentDaySelectedIconRes);
 
     void setCalendarOrientation(int calendarOrientation);
-
-    void setConnectedDayTextColor(int connectedDayTextColor);
-
-    void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor);
 
     void setConnectedDayIconRes(int connectedDayIconRes);
 

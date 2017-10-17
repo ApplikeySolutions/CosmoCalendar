@@ -14,7 +14,12 @@ public class Day {
     private boolean selected;
     private boolean disabled;
     private boolean weekend;
+
+    //Connected days
     private boolean fromConnectedCalendar;
+    private int connectedDaysTextColor;
+    private int connectedDaysSelectedTextColor;
+    private int connectedDaysDisabledTextColor;
 
     //For animation states
     private SelectionState selectionState;
@@ -96,6 +101,30 @@ public class Day {
 
     public void setSelectionState(SelectionState selectionState) {
         this.selectionState = selectionState;
+    }
+
+    public int getConnectedDaysTextColor() {
+        return connectedDaysTextColor;
+    }
+
+    public void setConnectedDaysTextColor(int connectedDaysTextColor) {
+        this.connectedDaysTextColor = connectedDaysTextColor;
+    }
+
+    public int getConnectedDaysSelectedTextColor() {
+        return connectedDaysSelectedTextColor;
+    }
+
+    public void setConnectedDaysSelectedTextColor(int connectedDaysSelectedTextColor) {
+        this.connectedDaysSelectedTextColor = connectedDaysSelectedTextColor;
+    }
+
+    public int getConnectedDaysDisabledTextColor() {
+        return connectedDaysDisabledTextColor;
+    }
+
+    public void setConnectedDaysDisabledTextColor(int connectedDaysDisabledTextColor) {
+        this.connectedDaysDisabledTextColor = connectedDaysDisabledTextColor;
     }
 
     public Calendar getCalendar() {

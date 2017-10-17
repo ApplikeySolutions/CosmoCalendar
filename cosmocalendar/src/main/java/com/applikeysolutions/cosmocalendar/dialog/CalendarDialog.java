@@ -15,6 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDays;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDaysManager;
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.applikeysolutions.customizablecalendar.R;
 import com.applikeysolutions.cosmocalendar.model.Day;
@@ -182,16 +184,6 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
-    public int getConnectedDayTextColor() {
-        return calendarView.getConnectedDayTextColor();
-    }
-
-    @Override
-    public int getConnectedDaySelectedTextColor() {
-        return calendarView.getConnectedDaySelectedTextColor();
-    }
-
-    @Override
     public int getConnectedDayIconRes() {
         return calendarView.getConnectedDayIconRes();
     }
@@ -307,16 +299,6 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
-    public void setConnectedDayTextColor(int connectedDayTextColor) {
-        calendarView.setConnectedDayTextColor(connectedDayTextColor);
-    }
-
-    @Override
-    public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
-        calendarView.setConnectedDaySelectedTextColor(connectedDaySelectedTextColor);
-    }
-
-    @Override
     public void setConnectedDayIconRes(int connectedDayIconRes) {
         calendarView.setConnectedDayIconRes(connectedDayIconRes);
     }
@@ -367,8 +349,8 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
-    public Set<Long> getConnectedCalendarDays() {
-        return calendarView.getConnectedCalendarDays();
+    public ConnectedDaysManager getConnectedDaysManager() {
+        return calendarView.getConnectedDaysManager();
     }
 
     @Override
@@ -387,11 +369,6 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
-    public void setConnectedCalendarDays(Set<Long> connectedCalendarDays) {
-        calendarView.setConnectedCalendarDays(connectedCalendarDays);
-    }
-
-    @Override
     public void setWeekendDays(Set<Long> weekendDays) {
         calendarView.setWeekendDays(weekendDays);
     }
@@ -399,6 +376,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     @Override
     public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         calendarView.setDisabledDaysCriteria(criteria);
+    }
+
+    @Override
+    public void addConnectedDays(ConnectedDays connectedDays) {
+        calendarView.addConnectedDays(connectedDays);
     }
 
     @Override

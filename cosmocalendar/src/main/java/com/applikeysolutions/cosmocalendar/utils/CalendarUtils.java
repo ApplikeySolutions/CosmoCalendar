@@ -167,8 +167,8 @@ public final class CalendarUtils {
             }
         }
 
-        if (settingsManager.getConnectedCalendarDays() != null) {
-            day.setFromConnectedCalendar(isDayInSet(day, settingsManager.getConnectedCalendarDays()));
+        if (settingsManager.getConnectedDaysManager().isAnyConnectedDays()) {
+            settingsManager.getConnectedDaysManager().applySettingsToDay(day);
         }
     }
 

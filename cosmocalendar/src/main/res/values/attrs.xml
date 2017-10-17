@@ -42,8 +42,6 @@
         <attr name="currentDayIconRes" format="reference" />
         <attr name="currentDaySelectedIconRes" format="reference" />
 
-        <attr name="connectedDayTextColor" format="color" />
-        <attr name="connectedDaySelectedTextColor" format="color" />
         <attr name="connectedDayIconRes" format="reference" />
         <attr name="connectedDaySelectedIconRes" format="reference" />
         <attr name="connectedDayIconPosition" format="enum">

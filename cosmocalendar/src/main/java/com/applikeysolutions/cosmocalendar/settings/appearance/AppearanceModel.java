@@ -41,12 +41,6 @@ public class AppearanceModel implements AppearanceInterface {
     //Icon resource of current day selected
     private int currentDaySelectedIconRes;
 
-    //Text color of connected day
-    private int connectedDayTextColor;
-
-    //Text color of connected day selected
-    private int connectedDaySelectedTextColor;
-
     //Icon resource of connected day
     private int connectedDayIconRes;
 
@@ -151,16 +145,6 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public int getCalendarOrientation() {
         return calendarOrientation;
-    }
-
-    @Override
-    public int getConnectedDayTextColor() {
-        return connectedDayTextColor;
-    }
-
-    @Override
-    public int getConnectedDaySelectedTextColor() {
-        return connectedDaySelectedTextColor;
     }
 
     @Override
@@ -276,16 +260,6 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setCalendarOrientation(int calendarOrientation) {
         this.calendarOrientation = calendarOrientation;
-    }
-
-    @Override
-    public void setConnectedDayTextColor(int connectedDayTextColor) {
-        this.connectedDayTextColor = connectedDayTextColor;
-    }
-
-    @Override
-    public void setConnectedDaySelectedTextColor(int connectedDaySelectedTextColor) {
-        this.connectedDaySelectedTextColor = connectedDaySelectedTextColor;
     }
 
     @Override

@@ -68,7 +68,11 @@ public class DayHolder extends BaseDayHolder {
 
     private void select(Day day) {
         if (day.isFromConnectedCalendar()) {
-            ctvDay.setTextColor(calendarView.getConnectedDaySelectedTextColor());
+            if(day.isDisabled()){
+                ctvDay.setTextColor(day.getConnectedDaysDisabledTextColor());
+            } else {
+                ctvDay.setTextColor(day.getConnectedDaysSelectedTextColor());
+            }
             addConnectedDayIcon(true);
         } else {
             ctvDay.setTextColor(calendarView.getSelectedDayTextColor());
@@ -157,7 +161,11 @@ public class DayHolder extends BaseDayHolder {
     private void unselect(Day day) {
         int textColor;
         if (day.isFromConnectedCalendar()) {
-            textColor = calendarView.getConnectedDayTextColor();
+            if(day.isDisabled()){
+                textColor = day.getConnectedDaysDisabledTextColor();
+            } else {
+                textColor = day.getConnectedDaysTextColor();
+            }
             addConnectedDayIcon(false);
         } else if (day.isWeekend()) {
             textColor = calendarView.getWeekendDayTextColor();

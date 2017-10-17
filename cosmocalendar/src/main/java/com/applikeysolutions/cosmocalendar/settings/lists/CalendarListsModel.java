@@ -1,5 +1,8 @@
 package com.applikeysolutions.cosmocalendar.settings.lists;
 
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDays;
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDaysManager;
+
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +16,7 @@ public class CalendarListsModel implements CalendarListsInterface {
     private DisabledDaysCriteria disabledDaysCriteria;
 
     //Custom connected days for displaying in calendar
-    private Set<Long> connectedCalendarDays = new TreeSet<>();
+    private ConnectedDaysManager connectedDaysManager = ConnectedDaysManager.getInstance();
 
     private Set<Long> weekendDays = new HashSet() {{
         add(Calendar.SUNDAY);
@@ -25,8 +28,8 @@ public class CalendarListsModel implements CalendarListsInterface {
     }
 
     @Override
-    public Set<Long> getConnectedCalendarDays() {
-        return connectedCalendarDays;
+    public ConnectedDaysManager getConnectedDaysManager() {
+        return connectedDaysManager;
     }
 
     @Override
@@ -45,11 +48,6 @@ public class CalendarListsModel implements CalendarListsInterface {
     }
 
     @Override
-    public void setConnectedCalendarDays(Set<Long> connectedCalendarDays) {
-        this.connectedCalendarDays = connectedCalendarDays;
-    }
-
-    @Override
     public void setWeekendDays(Set<Long> weekendDays) {
         this.weekendDays = weekendDays;
     }
@@ -57,5 +55,10 @@ public class CalendarListsModel implements CalendarListsInterface {
     @Override
     public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         this.disabledDaysCriteria = criteria;
+    }
+
+    @Override
+    public void addConnectedDays(ConnectedDays connectedDays) {
+        connectedDaysManager.addConnectedDays(connectedDays);
     }
 }
