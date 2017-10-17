@@ -17,11 +17,13 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
    * [Month change listener](#month-change-listener)
    * [Calendar dialog](#calendar-dialog)
 * [Demo](#demo)
+* [Release Notes](#release-notes)
+* [Contact Us](#contact-us)
 * [License](#license)
 
 # Usage
   ```xml
-  compile 'com.github.applikeysolutions:cosmocalendar:1.0.2'
+  compile 'com.github.applikeysolutions:cosmocalendar:1.0.3'
   ```
 
 # Customization
@@ -68,13 +70,22 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
   ### Connected days
   You can add some days for example holidays:
   ```java
-  Set<Long> connectedDaysSet = new HashSet<>();
-  connectedDaysSet.add(System.currentTimeMillis());
-  calendarView.setConnectedCalendarDays(connectedDaysSet);
+  //Set days you want to connect
+  Calendar calendar = Calendar.getInstance();
+  Set<Long> days = new TreeSet<>();
+  days.add(calendar.getTimeInMillis());
+  ...
+  
+  //Define colors
+  int textColor = Color.parseColor("#ff0000");
+  int selectedTextColor = Color.parseColor("#ff4000");
+  int disabledTextColor = Color.parseColor("#ff8000");
+  ConnectedDays connectedDays = new ConnectedDays(days, textColor, selectedTextColor, disabledTextColor);
+
+  //Connect days to calendar
+  calendarView.addConnectedDays(connectedDays);
   ```
   and customize them:
-  * connectedDayTextColor
-  * connectedDaySelectedTextColor
   * connectedDayIconRes;
   * connectedDaySelectedIconRes;
   * connectedDayIconPosition (TOP/BOTTOM);
@@ -129,6 +140,29 @@ Single Choice             |  Multiple
 ![](pictures/Calendar-single_2.jpg)  |  ![](pictures/Calendar-multiple-years_2.jpg)
 Range             |  Customized
 ![](pictures/Calendar-range-years_2.jpg)  |  ![](pictures/Calendar-dialogue-dark_2.jpg)
+
+# Release Notes
+
+### 1.0.0
+- Release version.
+
+### 1.0.1
+- Functionality optimization
+- Added disabled days criteria feature
+- Added more customization for connected days (selected/unselected icon, top/bottom position for icon)
+
+### 1.0.2
+- Added "NONE" selection type
+- The functionality of creating months is optimized
+- Added OnMonthChangeListener
+
+### 1.0.3
+- Fixed crash on swipe
+- Connected days logic changed. Now you can add multiple connected day lists!
+
+# Contact Us
+
+You can always contact us via github@applikey.biz We are open for any inquiries regarding our libraries and controls, new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy if you write us your feedback and let us know about it!
 
 # License
 
