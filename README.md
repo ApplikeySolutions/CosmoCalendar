@@ -23,7 +23,7 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
 
 # Usage
   ```xml
-  compile 'com.github.applikeysolutions:cosmocalendar:1.0.2'
+  compile 'com.github.applikeysolutions:cosmocalendar:1.0.3'
   ```
 
 # Customization
@@ -70,13 +70,22 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
   ### Connected days
   You can add some days for example holidays:
   ```java
-  Set<Long> connectedDaysSet = new HashSet<>();
-  connectedDaysSet.add(System.currentTimeMillis());
-  calendarView.setConnectedCalendarDays(connectedDaysSet);
+  //Set days you want to connect
+  Calendar calendar = Calendar.getInstance();
+  Set<Long> days = new TreeSet<>();
+  days.add(calendar.getTimeInMillis());
+  ...
+  
+  //Define colors
+  int textColor = Color.parseColor("#ff0000");
+  int selectedTextColor = Color.parseColor("#ff4000");
+  int disabledTextColor = Color.parseColor("#ff8000");
+  ConnectedDays connectedDays = new ConnectedDays(days, textColor, selectedTextColor, disabledTextColor);
+
+  //Connect days to calendar
+  calendarView.addConnectedDays(connectedDays);
   ```
   and customize them:
-  * connectedDayTextColor
-  * connectedDaySelectedTextColor
   * connectedDayIconRes;
   * connectedDaySelectedIconRes;
   * connectedDayIconPosition (TOP/BOTTOM);
@@ -146,6 +155,10 @@ Range             |  Customized
 - Added "NONE" selection type
 - The functionality of creating months is optimized
 - Added OnMonthChangeListener
+
+### 1.0.3
+- Fixed crash on swipe
+- Connected days logic changed. Now you can add multiple connected day lists!
 
 # Contact Us
 
