@@ -578,7 +578,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
             Month month = monthIterator.next();
             for(Iterator<Day> dayIterator = month.getDaysWithoutTitlesAndOnlyCurrent().iterator(); dayIterator.hasNext();) {
                 Day day = dayIterator.next();
-                selectedDays.add(day);
+                if (selectionManager.isDaySelected(day)) {
+                    selectedDays.add(day);
+                }
             }
         }
         return selectedDays;
