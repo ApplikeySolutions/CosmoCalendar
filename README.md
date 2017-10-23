@@ -23,7 +23,7 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
 
 # Usage
   ```xml
-  compile 'com.github.applikeysolutions:cosmocalendar:1.0.3'
+  compile 'com.github.applikeysolutions:cosmocalendar:1.0.4'
   ```
 
 # Customization
@@ -159,6 +159,9 @@ Range             |  Customized
 ### 1.0.3
 - Fixed crash on swipe
 - Connected days logic changed. Now you can add multiple connected day lists!
+
+### 1.0.4
+- Fixed small bugs
 
 # Contact Us
 
