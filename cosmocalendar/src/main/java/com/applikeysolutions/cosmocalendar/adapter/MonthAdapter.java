@@ -144,6 +144,16 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
         notifyDataSetChanged();
     }
 
+
+    public void resetDisabledDays() {
+        for (Month month : months) {
+            for (Day day : month.getDays()) {
+                day.setDisabled(false);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     private void setDaysAccordingToSet(Set<Long> days, DayFlag dayFlag) {
         if (days != null && !days.isEmpty()) {
             for (Month month : months) {
