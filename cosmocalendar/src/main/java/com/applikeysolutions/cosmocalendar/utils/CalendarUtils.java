@@ -157,8 +157,20 @@ public final class CalendarUtils {
             day.setWeekend(settingsManager.getWeekendDays().contains(day.getCalendar().get(Calendar.DAY_OF_WEEK)));
         }
 
+        if (settingsManager.getMinDate() != null) {
+            day.setDisabled(isDayDisabledByMinDate(day, settingsManager.getMinDate()));
+        }
+
+        if (settingsManager.getMaxDate() != null) {
+            if (!day.isDisabled()) {
+                day.setDisabled(isDayDisabledByMaxDate(day, settingsManager.getMaxDate()));
+            }
+        }
+
         if (settingsManager.getDisabledDays() != null) {
-            day.setDisabled(isDayInSet(day, settingsManager.getDisabledDays()));
+            if(!day.isDisabled()) {
+                day.setDisabled(isDayInSet(day, settingsManager.getDisabledDays()));
+            }
         }
 
         if (settingsManager.getDisabledDaysCriteria() != null) {
@@ -181,6 +193,18 @@ public final class CalendarUtils {
             }
         }
         return false;
+    }
+
+    public static boolean isDayDisabledByMinDate(Day day, Calendar minDate) {
+        return day.getCalendar().get(Calendar.YEAR) < minDate.get(Calendar.YEAR)
+                || day.getCalendar().get(Calendar.YEAR) == minDate.get(Calendar.YEAR)
+                && day.getCalendar().get(Calendar.DAY_OF_YEAR) < minDate.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public static boolean isDayDisabledByMaxDate(Day day, Calendar maxDate) {
+        return day.getCalendar().get(Calendar.YEAR) > maxDate.get(Calendar.YEAR)
+                || day.getCalendar().get(Calendar.YEAR) == maxDate.get(Calendar.YEAR)
+                && day.getCalendar().get(Calendar.DAY_OF_YEAR) > maxDate.get(Calendar.DAY_OF_YEAR);
     }
 
     public static boolean isDayDisabledByCriteria(Day day, DisabledDaysCriteria criteria) {

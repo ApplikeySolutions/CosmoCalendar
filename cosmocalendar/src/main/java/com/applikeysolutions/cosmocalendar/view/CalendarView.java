@@ -101,8 +101,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private FetchMonthsAsyncTask asyncTask;
 
     public CalendarView(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public CalendarView(Context context, @Nullable AttributeSet attrs) {
@@ -513,6 +512,16 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
+    public Calendar getMinDate() {
+        return settingsManager.getMinDate();
+    }
+
+    @Override
+    public Calendar getMaxDate() {
+        return settingsManager.getMaxDate();
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return settingsManager.getDisabledDays();
     }
@@ -530,6 +539,18 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     @Override
     public DisabledDaysCriteria getDisabledDaysCriteria() {
         return settingsManager.getDisabledDaysCriteria();
+    }
+
+    @Override
+    public void setMinDate(Calendar minDate) {
+        settingsManager.setMinDate(minDate);
+        monthAdapter.setMinDate(minDate);
+    }
+
+    @Override
+    public void setMaxDate(Calendar maxDate) {
+        settingsManager.setMaxDate(maxDate);
+        monthAdapter.setMaxDate(maxDate);
     }
 
     public void setDisabledDays(Set<Long> disabledDays) {
