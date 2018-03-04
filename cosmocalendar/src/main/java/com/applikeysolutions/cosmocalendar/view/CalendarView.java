@@ -472,8 +472,15 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
                 //Hide navigation buttons
                 boolean show = newState != RecyclerView.SCROLL_STATE_DRAGGING;
+
                 ivPrevious.setVisibility(show ? View.VISIBLE : View.GONE);
                 ivNext.setVisibility(show ? View.VISIBLE : View.GONE);
+
+                boolean clickable = newState == RecyclerView.SCROLL_STATE_IDLE;
+
+                ivPrevious.setClickable(clickable);
+                ivNext.setClickable(clickable);
+
             }
 
             super.onScrollStateChanged(recyclerView, newState);
