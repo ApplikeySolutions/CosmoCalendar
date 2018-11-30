@@ -19,15 +19,19 @@
             android:layout_marginLeft="@dimen/space_1x"
             android:layout_marginRight="@dimen/space_1x"
             android:layout_weight="1"
-            android:background="@color/default_border_color" />
+            android:background="@color/default_border_color"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_month_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/month_text_padding"
+            android:layout_marginLeft="@dimen/month_text_padding"
+            android:layout_marginRight="@dimen/month_text_padding"
+            android:layout_marginStart="@dimen/month_text_padding"
             android:letterSpacing="0.1"
-            android:textAllCaps="true"
             android:textSize="@dimen/text_big"
             tools:text="April 2015" />
 
@@ -39,7 +43,8 @@
             android:layout_marginLeft="@dimen/space_1x"
             android:layout_marginRight="@dimen/space_1x"
             android:layout_weight="1"
-            android:background="@color/default_border_color" />
+            android:background="@color/default_border_color"
+            android:visibility="gone" />
 
     </LinearLayout>
 

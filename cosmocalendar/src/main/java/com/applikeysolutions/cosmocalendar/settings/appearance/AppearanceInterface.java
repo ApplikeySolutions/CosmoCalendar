@@ -1,5 +1,7 @@
 package com.applikeysolutions.cosmocalendar.settings.appearance;
 
+import android.support.annotation.StyleRes;
+
 public interface AppearanceInterface {
 
     int getCalendarBackgroundColor();
@@ -43,6 +45,15 @@ public interface AppearanceInterface {
     int getPreviousMonthIconRes();
 
     int getNextMonthIconRes();
+
+    @StyleRes
+    int getDayTextAppearance();
+
+    @StyleRes
+    int getWeekTextAppearance();
+
+    @StyleRes
+    int getMonthTextAppearance();
 
     boolean isShowDaysOfWeek();
 
@@ -93,4 +104,10 @@ public interface AppearanceInterface {
     void setShowDaysOfWeek(boolean showDaysOfWeek);
 
     void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle);
+
+    void setDayTextAppearance(@StyleRes int dayTextAppearance);
+
+    void setWeekTextAppearance(@StyleRes int weekTextAppearance);
+
+    void setMonthTextAppearance(@StyleRes int monthTextAppearance);
 }

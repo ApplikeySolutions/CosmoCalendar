@@ -1,5 +1,6 @@
 package com.applikeysolutions.cosmocalendar.adapter.viewholder;
 
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -38,9 +39,10 @@ public class MonthHolder extends RecyclerView.ViewHolder {
     public void bind(Month month) {
         tvMonthName.setText(month.getMonthName());
         tvMonthName.setTextColor(appearanceModel.getMonthTextColor());
+        TextViewCompat.setTextAppearance(tvMonthName, appearanceModel.getMonthTextAppearance());
 
-        viewLeftLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.VISIBLE);
-        viewRightLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.VISIBLE);
+        viewLeftLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.GONE);
+        viewRightLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.GONE);
         llMonthHeader.setBackgroundResource(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? R.drawable.border_top_bottom : 0);
 
         monthView.initAdapter(month);

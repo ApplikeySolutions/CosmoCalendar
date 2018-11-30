@@ -1,5 +1,6 @@
 package com.applikeysolutions.cosmocalendar.adapter.viewholder;
 
+import android.support.v4.widget.TextViewCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class DayOfWeekHolder extends BaseDayHolder {
     }
 
     public void bind(Day day) {
+        TextViewCompat.setTextAppearance(tvDay, calendarView.getDayTextAppearance());
         tvDay.setText(mDayOfWeekFormatter.format(day.getCalendar().getTime()));
         tvDay.setTextColor(calendarView.getWeekDayTitleTextColor());
     }

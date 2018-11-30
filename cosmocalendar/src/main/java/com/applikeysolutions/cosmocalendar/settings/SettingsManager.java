@@ -158,6 +158,21 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public int getDayTextAppearance() {
+        return appearanceModel.getDayTextAppearance();
+    }
+
+    @Override
+    public int getWeekTextAppearance() {
+        return appearanceModel.getWeekTextAppearance();
+    }
+
+    @Override
+    public int getMonthTextAppearance() {
+        return appearanceModel.getMonthTextAppearance();
+    }
+
+    @Override
     public boolean isShowDaysOfWeek() {
         return appearanceModel.isShowDaysOfWeek();
     }
@@ -280,6 +295,21 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         appearanceModel.setShowDaysOfWeekTitle(showDaysOfWeekTitle);
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        appearanceModel.setDayTextAppearance(dayTextAppearance);
+    }
+
+    @Override
+    public void setWeekTextAppearance(int weekTextAppearance) {
+        appearanceModel.setWeekTextAppearance(weekTextAppearance);
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        appearanceModel.setMonthTextAppearance(monthTextAppearance);
     }
 
     @Override

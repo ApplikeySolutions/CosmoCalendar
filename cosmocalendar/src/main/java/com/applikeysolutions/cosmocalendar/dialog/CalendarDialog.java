@@ -219,6 +219,21 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public int getDayTextAppearance() {
+        return calendarView.getDayTextAppearance();
+    }
+
+    @Override
+    public int getWeekTextAppearance() {
+        return calendarView.getWeekTextAppearance();
+    }
+
+    @Override
+    public int getMonthTextAppearance() {
+        return calendarView.getMonthTextAppearance();
+    }
+
+    @Override
     public boolean isShowDaysOfWeek() {
         return calendarView.isShowDaysOfWeek();
     }
@@ -341,6 +356,21 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         calendarView.setShowDaysOfWeekTitle(showDaysOfWeekTitle);
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        calendarView.setDayTextAppearance(dayTextAppearance);
+    }
+
+    @Override
+    public void setWeekTextAppearance(int weekTextAppearance) {
+        calendarView.setWeekTextAppearance(weekTextAppearance);
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        calendarView.setMonthTextAppearance(monthTextAppearance);
     }
 
     @Override
