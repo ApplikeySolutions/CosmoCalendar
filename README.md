@@ -1,7 +1,7 @@
 # CosmoCalendar
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/AppliKeySolutions/CosmoCalendar/blob/master/LICENSE)
 
-Made by [Applikey Solutions](https://applikeysolutions.com)
+Made by [Applikey Solutions](https://applikeysolutions.com) and updated by Mustafa Bayram.
 
 ![](pictures/cosmo-calendar.png)
 
@@ -23,7 +23,7 @@ Made by [Applikey Solutions](https://applikeysolutions.com)
 
 # Usage
   ```xml
-  compile 'com.github.mustafabayram:cosmocalendar:1.0.5'
+  compile 'com.github.mustafabayram:CosmoCalendar:v1.0.5'
   ```
 
 # Customization
