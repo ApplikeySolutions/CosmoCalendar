@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
+group = 'com.github.mustafabayram'
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'cosmocalendar'
@@ -13,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/AppliKeySolutions/CosmoCalendar'
     gitUrl = 'https://github.com/AppliKeySolutions/CosmoCalendar.git'
 
-    libraryVersion = '1.0.4'
+    libraryVersion = '1.0.5'
 
     developerId = 'devilbrain666'
     developerName = 'Ostapenko Yura'
@@ -32,7 +34,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 5
-        versionName "1.0.4"
+        versionName "1.0.5"
     }
     buildTypes {
         release {
