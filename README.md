@@ -23,7 +23,7 @@ Made by [Applikey Solutions](https://applikeysolutions.com) and updated by Musta
 
 # Usage
   ```xml
-  compile 'com.github.mustafabayram:CosmoCalendar:1.0.6'
+  compile 'com.github.mustafabayram:CosmoCalendar:1.0.7'
   ```
 
 # Customization
