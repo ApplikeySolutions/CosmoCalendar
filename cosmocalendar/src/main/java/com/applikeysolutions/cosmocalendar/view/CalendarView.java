@@ -386,7 +386,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         rvMonths = new SlowdownRecyclerView(getContext());
         rvMonths.setId(ViewIDGenerator.generateViewId());
         rvMonths.setHasFixedSize(true);
-        rvMonths.setNestedScrollingEnabled(false);
+        rvMonths.setNestedScrollingEnabled(true);
         ((SimpleItemAnimator) rvMonths.getItemAnimator()).setSupportsChangeAnimations(false);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -105,6 +105,8 @@ public final class CalendarUtils {
             calendar.add(Calendar.MONTH, -1);
         }
 
+        settingsManager.setInitialPosition(SettingsManager.DEFAULT_MONTH_COUNT / 2);
+
         for (int i = 0; i < SettingsManager.DEFAULT_MONTH_COUNT; i++) {
             months.add(createMonth(calendar.getTime(), settingsManager));
             DateUtils.addMonth(calendar);
