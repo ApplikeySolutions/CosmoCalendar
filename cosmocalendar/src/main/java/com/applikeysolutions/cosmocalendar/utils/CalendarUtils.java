@@ -93,7 +93,11 @@ public final class CalendarUtils {
         return titles;
     }
 
-    public static List<Month> createInitialMonths(SettingsManager settingsManager) {
+    public static List<Month> createInitialMonths(SettingsManager settingsManager, boolean hasLimit) {
+        return hasLimit ? createInitialMonthsWithLimit(settingsManager) : createInitialMonthsDefault(settingsManager);
+    }
+
+    private static List<Month> createInitialMonthsDefault(SettingsManager settingsManager) {
         final List<Month> months = new ArrayList<>();
 
         final Calendar calendar = Calendar.getInstance();
@@ -106,6 +110,42 @@ public final class CalendarUtils {
             DateUtils.addMonth(calendar);
         }
         return months;
+    }
+
+
+    private static List<Month> createInitialMonthsWithLimit(SettingsManager settingsManager) {
+        final List<Month> months = new ArrayList<>();
+
+        final Calendar calendar = Calendar.getInstance();
+
+        int previousMonthCount;
+
+        if (settingsManager.getVisibleMaxDate() == null) {
+            return new ArrayList<>();
+        }
+
+        if (settingsManager.getVisibleMinDate() != null) {
+
+            previousMonthCount = monthsBetween(settingsManager.getVisibleMinDate(), calendar);
+            settingsManager.setInitialPosition(previousMonthCount);
+
+            while (calendar.compareTo(settingsManager.getVisibleMinDate()) >= 0) {
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
+            }
+        }
+
+        do {
+            months.add(createMonth(calendar.getTime(), settingsManager));
+            DateUtils.addMonth(calendar);
+        } while (calendar.compareTo(settingsManager.getVisibleMaxDate()) <= 0);
+
+        return months;
+    }
+
+    public static int monthsBetween(Calendar startDate, Calendar endDate) {
+        int diffYear = endDate.get(Calendar.YEAR) - startDate.get(Calendar.YEAR);
+        int diffMonth = diffYear * 12 + endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH);
+        return diffMonth;
     }
 
     /**
@@ -157,12 +197,23 @@ public final class CalendarUtils {
             day.setWeekend(settingsManager.getWeekendDays().contains(day.getCalendar().get(Calendar.DAY_OF_WEEK)));
         }
 
+        if (settingsManager.getEnableMinDate() != null) {
+            day.setDisabled(isDayDisabledByMinDate(day, settingsManager.getEnableMinDate()));
+        }
+        if (settingsManager.getEnableMaxDate() != null) {
+            if (!day.isDisabled()) {
+                day.setDisabled(isDayDisabledByMaxDate(day, settingsManager.getEnableMaxDate()));
+            }
+        }
+
         if (settingsManager.getDisabledDays() != null) {
-            day.setDisabled(isDayInSet(day, settingsManager.getDisabledDays()));
+            if (!day.isDisabled()) {
+                day.setDisabled(isDayInSet(day, settingsManager.getDisabledDays()));
+            }
         }
 
         if (settingsManager.getDisabledDaysCriteria() != null) {
-            if(!day.isDisabled()){
+            if (!day.isDisabled()) {
                 day.setDisabled(isDayDisabledByCriteria(day, settingsManager.getDisabledDaysCriteria()));
             }
         }
@@ -183,9 +234,21 @@ public final class CalendarUtils {
         return false;
     }
 
+    public static boolean isDayDisabledByMinDate(Day day, Calendar minDate) {
+        return day.getCalendar().get(Calendar.YEAR) < minDate.get(Calendar.YEAR)
+                || day.getCalendar().get(Calendar.YEAR) == minDate.get(Calendar.YEAR)
+                && day.getCalendar().get(Calendar.DAY_OF_YEAR) < minDate.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public static boolean isDayDisabledByMaxDate(Day day, Calendar maxDate) {
+        return day.getCalendar().get(Calendar.YEAR) > maxDate.get(Calendar.YEAR)
+                || day.getCalendar().get(Calendar.YEAR) == maxDate.get(Calendar.YEAR)
+                && day.getCalendar().get(Calendar.DAY_OF_YEAR) > maxDate.get(Calendar.DAY_OF_YEAR);
+    }
+
     public static boolean isDayDisabledByCriteria(Day day, DisabledDaysCriteria criteria) {
         int field = -1;
-        switch (criteria.getCriteriaType()){
+        switch (criteria.getCriteriaType()) {
             case DAYS_OF_MONTH:
                 field = Calendar.DAY_OF_MONTH;
                 break;
@@ -195,15 +258,15 @@ public final class CalendarUtils {
                 break;
         }
 
-        for(int dayInt : criteria.getDays()){
-            if(dayInt == day.getCalendar().get(field)){
+        for (int dayInt : criteria.getDays()) {
+            if (dayInt == day.getCalendar().get(field)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static int getIconHeight(Resources resources, int iconResId){
+    public static int getIconHeight(Resources resources, int iconResId) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(resources, iconResId, options);

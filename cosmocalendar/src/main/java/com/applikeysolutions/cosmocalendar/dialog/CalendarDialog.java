@@ -26,6 +26,7 @@ import com.applikeysolutions.cosmocalendar.settings.lists.CalendarListsInterface
 import com.applikeysolutions.cosmocalendar.settings.selection.SelectionInterface;
 import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
@@ -374,6 +375,26 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public Calendar getEnableMinDate() {
+        return calendarView.getEnableMinDate();
+    }
+
+    @Override
+    public Calendar getEnableMaxDate() {
+        return calendarView.getEnableMaxDate();
+    }
+
+    @Override
+    public Calendar getVisibleMinDate() {
+        return calendarView.getVisibleMinDate();
+    }
+
+    @Override
+    public Calendar getVisibleMaxDate() {
+        return calendarView.getVisibleMaxDate();
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarView.getDisabledDays();
     }
@@ -396,6 +417,26 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     @Override
     public void setDisabledDays(Set<Long> disabledDays) {
         calendarView.setDisabledDays(disabledDays);
+    }
+
+    @Override
+    public void setEnableMinDate(Calendar minDate) {
+        calendarView.setEnableMinDate(minDate);
+    }
+
+    @Override
+    public void setEnableMaxDate(Calendar maxDate) {
+        calendarView.setEnableMaxDate(maxDate);
+    }
+
+    @Override
+    public void setVisibleMinDate(Calendar minDate) {
+        calendarView.setVisibleMinDate(minDate);
+    }
+
+    @Override
+    public void setVisibleMaxDate(Calendar maxDate) {
+        calendarView.setVisibleMaxDate(maxDate);
     }
 
     @Override
