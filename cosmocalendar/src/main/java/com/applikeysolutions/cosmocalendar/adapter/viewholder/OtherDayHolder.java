@@ -19,5 +19,6 @@ public class OtherDayHolder extends BaseDayHolder {
         TextViewCompat.setTextAppearance(tvDay, calendarView.getDayTextAppearance());
         tvDay.setText(String.valueOf(day.getDayNumber()));
         tvDay.setTextColor(calendarView.getOtherDayTextColor());
+        tvDay.setVisibility(calendarView.getOtherDayVisibility() ? View.VISIBLE : View.INVISIBLE);
     }
 }

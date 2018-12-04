@@ -220,6 +220,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public boolean getOtherDayVisibility() {
+        return calendarView.getOtherDayVisibility();
+    }
+
+    @Override
     public int getDayTextAppearance() {
         return calendarView.getDayTextAppearance();
     }
@@ -372,6 +377,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     @Override
     public void setMonthTextAppearance(int monthTextAppearance) {
         calendarView.setMonthTextAppearance(monthTextAppearance);
+    }
+
+    @Override
+    public void setOtherDayVisibility(boolean isVisible) {
+        calendarView.setOtherDayVisibility(isVisible);
     }
 
     @Override

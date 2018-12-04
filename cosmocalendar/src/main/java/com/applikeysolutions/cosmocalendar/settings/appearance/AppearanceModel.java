@@ -71,6 +71,9 @@ public class AppearanceModel implements AppearanceInterface {
     //Text Appearance resource of month text
     private int monthTextAppearanceRes;
 
+    //Other day text visibility
+    private boolean isOtherDayVisible = true;
+
     /**
      * Orientation of calendar
      * possible values:
@@ -189,6 +192,11 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public int getNextMonthIconRes() {
         return nextMonthIconRes;
+    }
+
+    @Override
+    public boolean getOtherDayVisibility() {
+        return isOtherDayVisible;
     }
 
     @Override
@@ -344,5 +352,10 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setMonthTextAppearance(int monthTextAppearance) {
         this.monthTextAppearanceRes = monthTextAppearance;
+    }
+
+    @Override
+    public void setOtherDayVisibility(boolean isVisible) {
+        isOtherDayVisible = isVisible;
     }
 }

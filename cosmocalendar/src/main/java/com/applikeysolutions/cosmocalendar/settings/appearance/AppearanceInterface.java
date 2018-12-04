@@ -46,6 +46,8 @@ public interface AppearanceInterface {
 
     int getNextMonthIconRes();
 
+    boolean getOtherDayVisibility();
+
     @StyleRes
     int getDayTextAppearance();
 
@@ -110,4 +112,6 @@ public interface AppearanceInterface {
     void setWeekTextAppearance(@StyleRes int weekTextAppearance);
 
     void setMonthTextAppearance(@StyleRes int monthTextAppearance);
+
+    void setOtherDayVisibility(boolean isVisible);
 }

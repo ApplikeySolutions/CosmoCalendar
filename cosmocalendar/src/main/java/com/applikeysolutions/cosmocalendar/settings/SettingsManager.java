@@ -164,6 +164,11 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public boolean getOtherDayVisibility() {
+        return appearanceModel.getOtherDayVisibility();
+    }
+
+    @Override
     public int getDayTextAppearance() {
         return appearanceModel.getDayTextAppearance();
     }
@@ -320,6 +325,11 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setMonthTextAppearance(int monthTextAppearance) {
         appearanceModel.setMonthTextAppearance(monthTextAppearance);
+    }
+
+    @Override
+    public void setOtherDayVisibility(boolean isVisible) {
+        appearanceModel.setOtherDayVisibility(isVisible);
     }
 
     @Override

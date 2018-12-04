@@ -902,6 +902,11 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
+    public boolean getOtherDayVisibility() {
+        return settingsManager.getOtherDayVisibility();
+    }
+
+    @Override
     public int getDayTextAppearance() {
         return settingsManager.getDayTextAppearance();
     }
@@ -1107,6 +1112,12 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     @Override
     public void setMonthTextAppearance(int monthTextAppearance) {
         settingsManager.setMonthTextAppearance(monthTextAppearance);
+        update();
+    }
+
+    @Override
+    public void setOtherDayVisibility(boolean isVisible) {
+        settingsManager.setOtherDayVisibility(isVisible);
         update();
     }
 
