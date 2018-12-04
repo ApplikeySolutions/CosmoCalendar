@@ -4,7 +4,6 @@ import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
@@ -15,20 +14,16 @@ import com.applikeysolutions.cosmocalendar.view.MonthView;
 
 public class MonthHolder extends RecyclerView.ViewHolder {
 
-    private LinearLayout llMonthHeader;
     private TextView tvMonthName;
-    private View viewLeftLine;
-    private View viewRightLine;
     private MonthView monthView;
+    private View monthHeaderBorder;
     private SettingsManager appearanceModel;
 
     public MonthHolder(View itemView, SettingsManager appearanceModel) {
         super(itemView);
-        llMonthHeader = (LinearLayout) itemView.findViewById(R.id.ll_month_header);
         monthView = (MonthView) itemView.findViewById(R.id.month_view);
         tvMonthName = (TextView) itemView.findViewById(R.id.tv_month_name);
-        viewLeftLine = itemView.findViewById(R.id.view_left_line);
-        viewRightLine = itemView.findViewById(R.id.view_right_line);
+        monthHeaderBorder = itemView.findViewById(R.id.month_header_border);
         this.appearanceModel = appearanceModel;
     }
 
@@ -41,10 +36,8 @@ public class MonthHolder extends RecyclerView.ViewHolder {
         tvMonthName.setTextColor(appearanceModel.getMonthTextColor());
         TextViewCompat.setTextAppearance(tvMonthName, appearanceModel.getMonthTextAppearance());
 
-        viewLeftLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.GONE);
-        viewRightLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.GONE);
-        llMonthHeader.setBackgroundResource(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? R.drawable.border_top_bottom : 0);
-
+        tvMonthName.setBackgroundResource(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? R.drawable.border_top_bottom : 0);
+        monthHeaderBorder.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.GONE : View.VISIBLE);
         monthView.initAdapter(month);
     }
 
