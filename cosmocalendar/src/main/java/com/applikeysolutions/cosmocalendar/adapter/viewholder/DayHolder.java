@@ -38,7 +38,7 @@ public class DayHolder extends BaseDayHolder {
 
         if (day.isCurrent()) {
             addCurrentDayIcon(isSelected);
-            ctvDay.setTextColor(calendarView.getCurrentDayTextColor());
+            //ctvDay.setTextColor(calendarView.getCurrentDayTextColor());
         }
 
         if (day.isDisabled()) {
@@ -173,13 +173,7 @@ public class DayHolder extends BaseDayHolder {
         } else if (day.isWeekend()) {
             textColor = calendarView.getWeekendDayTextColor();
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-        }
-        else if (day.isCurrent()) {
-            textColor = calendarView.getCurrentDayTextColor();
-            ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, calendarView.getCurrentDayIconRes(), 0, 0);
-        }
-
-        else {
+        } else {
             textColor = calendarView.getDayTextColor();
             ctvDay.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
