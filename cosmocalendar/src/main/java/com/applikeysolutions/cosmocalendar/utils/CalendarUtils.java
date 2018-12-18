@@ -139,7 +139,8 @@ public final class CalendarUtils {
         do {
             months.add(createMonth(calendar.getTime(), settingsManager));
             DateUtils.addMonth(calendar);
-        } while (calendar.compareTo(settingsManager.getVisibleMaxDate()) <= 0);
+        } while (calendar.compareTo(settingsManager.getVisibleMaxDate()) <= 0
+                || calendar.get(Calendar.MONTH) == settingsManager.getVisibleMaxDate().get(Calendar.MONTH));
 
         return months;
     }

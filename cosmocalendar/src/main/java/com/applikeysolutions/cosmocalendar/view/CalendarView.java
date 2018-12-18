@@ -396,7 +396,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         rvMonths.setLayoutManager(new GridLayoutManager(getContext(), 1, settingsManager.getCalendarOrientation(), false));
         monthAdapter = createAdapter();
 
-        changeSnapHelper();
+        //changeSnapHelper();
 
         rvMonths.setAdapter(monthAdapter);
         rvMonths.scrollToPosition(settingsManager.getInitialPosition());
@@ -1021,7 +1021,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
         rvMonths.setLayoutManager(new GridLayoutManager(getContext(), 1, getCalendarOrientation(), false));
 
-        changeSnapHelper();
+        //changeSnapHelper();
 
         if (getCalendarOrientation() == LinearLayout.HORIZONTAL) {
             if (flNavigationButtons != null) {
