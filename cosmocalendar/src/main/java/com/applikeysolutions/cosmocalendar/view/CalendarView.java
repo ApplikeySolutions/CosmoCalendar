@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.applikeysolutions.cosmocalendar.listeners.DateSelectedListener;
 import com.applikeysolutions.cosmocalendar.selection.NoneSelectionManager;
 import com.applikeysolutions.cosmocalendar.FetchMonthsAsyncTask;
 import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
@@ -102,6 +103,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private boolean hasMinOrMaxVisibleDateLimit;
 
     private FetchMonthsAsyncTask asyncTask;
+
+    private DateSelectedListener dateSelectedListener;
 
     public CalendarView(Context context) {
         this(context, null);
@@ -686,6 +689,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     public void onDaySelected() {
         selectedDays = getSelectedDays();
         displaySelectedDays();
+        if (dateSelectedListener != null) {
+            dateSelectedListener.onDateSelected(selectedDays.get(0).getCalendar());
+        }
     }
 
     /**
@@ -1135,6 +1141,14 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         } else {
             throw new IllegalArgumentException("First day of week must be 1 - 7");
         }
+    }
+
+    public DateSelectedListener getDateSelectedListener() {
+        return dateSelectedListener;
+    }
+
+    public void setDateSelectedListener(DateSelectedListener dateSelectedListener) {
+        this.dateSelectedListener = dateSelectedListener;
     }
 
     private void changeSnapHelper() {
