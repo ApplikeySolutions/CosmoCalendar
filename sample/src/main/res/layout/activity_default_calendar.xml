@@ -15,6 +15,7 @@
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/space_2x"
         app:dayTextAppearance = "@style/DayTextAppearance"
         app:monthTextAppearance = "@style/MonthTextAppearance"
         app:weekDayTextAppearance = "@style/WeekdayTextAppearance"

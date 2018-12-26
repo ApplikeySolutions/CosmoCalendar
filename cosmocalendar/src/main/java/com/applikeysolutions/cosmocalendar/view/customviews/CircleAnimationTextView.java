@@ -59,12 +59,21 @@ public class CircleAnimationTextView extends AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
+    public Integer getCalendarWidth() {
+        if(calendarView != null) {
+            return calendarView.getWidth() - calendarView.getPaddingStart() - calendarView.getPaddingEnd();
+        }
+
+        return null;
+    }
+
     //Square view
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY) {
             //For making all day views same height (ex. screen width 1080 and we have days with width 154/154/155/154/154/155/154)
-            super.onMeasure(widthMeasureSpec, CalendarUtils.getCircleWidth(getContext()) + MeasureSpec.EXACTLY);
+            int circleWidth = CalendarUtils.getCircleWidth(getContext(), getCalendarWidth());
+            super.onMeasure(widthMeasureSpec, circleWidth + MeasureSpec.EXACTLY);
         } else {
             super.onMeasure(widthMeasureSpec, widthMeasureSpec);
         }
@@ -301,8 +310,11 @@ public class CircleAnimationTextView extends AppCompatTextView {
     public void showAsCircle(int circleColor) {
         this.circleColor = circleColor;
         animationProgress = 100;
-        setWidth(CalendarUtils.getCircleWidth(getContext()));
-        setHeight(CalendarUtils.getCircleWidth(getContext()));
+
+        int circleWidth = CalendarUtils.getCircleWidth(getContext(), getCalendarWidth());
+
+        setWidth(circleWidth);
+        setHeight(circleWidth);
         requestLayout();
     }
 
@@ -343,8 +355,11 @@ public class CircleAnimationTextView extends AppCompatTextView {
         clearVariables();
         this.calendarView = calendarView;
         selectionState = SelectionState.RANGE_DAY;
-        setWidth(CalendarUtils.getCircleWidth(getContext()) / 2);
-        setHeight(CalendarUtils.getCircleWidth(getContext()));
+
+        int circleWidth = CalendarUtils.getCircleWidth(getContext(), getCalendarWidth());
+
+        setWidth(circleWidth / 2);
+        setHeight(circleWidth);
         requestLayout();
     }
 
