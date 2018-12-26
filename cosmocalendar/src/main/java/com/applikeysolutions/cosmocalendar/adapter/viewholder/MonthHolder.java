@@ -45,6 +45,10 @@ public class MonthHolder extends RecyclerView.ViewHolder {
         tvMonthName.setText(month.getMonthName());
         tvMonthName.setTextColor(appearanceModel.getMonthTextColor());
 
+        viewLeftLine.setBackgroundColor(appearanceModel.getBorderColor());
+        viewRightLine.setBackgroundColor(appearanceModel.getBorderColor());
+        viewHorizontalDivLine.setBackgroundColor(appearanceModel.getBorderColor());
+
         boolean isLineVisible = appearanceModel.getCalendarOrientation() == OrientationHelper.VERTICAL && appearanceModel.isMonthHorizontalLinesVisible();
         boolean isTitleDivVisible = appearanceModel.isMonthTitleBottomDivVisible();
 

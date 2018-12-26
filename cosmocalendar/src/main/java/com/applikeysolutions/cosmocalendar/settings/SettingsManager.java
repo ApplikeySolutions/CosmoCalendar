@@ -343,6 +343,16 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public int getBorderColor() {
+        return appearanceModel.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(int borderColor) {
+        appearanceModel.setBorderColor(borderColor);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarListsModel.getDisabledDays();
     }

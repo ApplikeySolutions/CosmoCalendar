@@ -73,6 +73,8 @@ public class AppearanceModel implements AppearanceInterface {
 
     private String weekDayFormat;
 
+    private int borderColor;
+
     /**
      * Orientation of calendar
      * possible values:
@@ -363,5 +365,13 @@ public class AppearanceModel implements AppearanceInterface {
 
     public void setWeekDayFormat(String weekDayFormat) {
         this.weekDayFormat = weekDayFormat;
+    }
+
+    public int getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(int borderColor) {
+        this.borderColor = borderColor;
     }
 }

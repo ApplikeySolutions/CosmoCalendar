@@ -113,4 +113,7 @@ public interface AppearanceInterface {
 
     String getWeekDayFormat();
     void setWeekDayFormat(String weekDayFormat);
+
+    int getBorderColor();
+    void setBorderColor(int borderColor);
 }

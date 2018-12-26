@@ -404,6 +404,16 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public int getBorderColor() {
+        return calendarView.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(int borderColor) {
+        calendarView.setBorderColor(borderColor);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarView.getDisabledDays();
     }

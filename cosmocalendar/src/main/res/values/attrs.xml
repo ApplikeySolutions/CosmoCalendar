@@ -76,5 +76,7 @@
             <enum name="medium" value="1" />
         </attr>
 
+        <attr name="borderColor" format="color" />
+
     </declare-styleable>
 </resources>

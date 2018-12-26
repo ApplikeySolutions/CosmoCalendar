@@ -2,7 +2,10 @@ package com.applikeysolutions.cosmocalendar.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.AttrRes;
@@ -17,6 +20,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -184,6 +188,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
         int weekdayFormat = typedArray.getInt(R.styleable.CalendarView_weekdayFormat, -1);
 
+        int borderColor = typedArray.getColor(R.styleable.CalendarView_borderColor, getResources().getColor(R.color.default_border_color));
+
         setBackgroundColor(calendarBackgroundColor);
         settingsManager.setCalendarBackgroundColor(calendarBackgroundColor);
         settingsManager.setMonthTextColor(monthTextColor);
@@ -217,6 +223,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
         settingsManager.setMonthHorizontalLinesVisible(horizontalLinesVisible);
         settingsManager.setMonthTitleBottomDivVisible(monthDivVisible);
+
+        settingsManager.setBorderColor(borderColor);
 
         if(weekdayFormat != -1) {
             DayOfWeek.WeekdayFormat format = DayOfWeek.WeekdayFormat.values()[weekdayFormat];
@@ -313,6 +321,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
         //adding borders
         llDaysOfWeekTitles.setBackgroundResource(R.drawable.border_top_bottom);
+
+        LayerDrawable background = (LayerDrawable) llDaysOfWeekTitles.getBackground().mutate();
+        ((GradientDrawable)background.getDrawable(0)).setStroke((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics()), settingsManager.getBorderColor());
 
         if (!isTitleAlreadyAdded) {
             addView(llDaysOfWeekTitles);
@@ -1114,6 +1125,17 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     @Override
     public void setWeekDayFormat(String weekDayFormat) {
         settingsManager.setWeekDayFormat(weekDayFormat);
+        update();
+    }
+
+    @Override
+    public int getBorderColor() {
+        return settingsManager.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(int borderColor) {
+        settingsManager.setBorderColor(borderColor);
         update();
     }
 
