@@ -374,6 +374,36 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public boolean isMonthHorizontalLinesVisible() {
+        return calendarView.isMonthHorizontalLinesVisible();
+    }
+
+    @Override
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        calendarView.setMonthHorizontalLinesVisible(monthHorizontalLinesVisible);
+    }
+
+    @Override
+    public boolean isMonthTitleBottomDivVisible() {
+        return calendarView.isMonthTitleBottomDivVisible();
+    }
+
+    @Override
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        calendarView.setMonthTitleBottomDivVisible(monthTitleBottomDivVisible);
+    }
+
+    @Override
+    public String getWeekDayFormat() {
+        return calendarView.getWeekDayFormat();
+    }
+
+    @Override
+    public void setWeekDayFormat(String weekDayFormat) {
+        calendarView.setWeekDayFormat(weekDayFormat);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarView.getDisabledDays();
     }

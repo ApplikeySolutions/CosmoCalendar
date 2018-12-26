@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.applikeysolutions.cosmocalendar.model.DayOfWeek;
 import com.applikeysolutions.cosmocalendar.selection.NoneSelectionManager;
 import com.applikeysolutions.cosmocalendar.FetchMonthsAsyncTask;
 import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
@@ -178,6 +179,11 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int weekDayTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_weekDayTextAppearance, -1);
         int dayTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_dayTextAppearance, -1);
 
+        boolean horizontalLinesVisible = typedArray.getBoolean(R.styleable.CalendarView_monthHorizontalLinesVisible, true);
+        boolean monthDivVisible = typedArray.getBoolean(R.styleable.CalendarView_monthTitleBottomDivVisible, false);
+
+        int weekdayFormat = typedArray.getInt(R.styleable.CalendarView_weekdayFormat, -1);
+
         setBackgroundColor(calendarBackgroundColor);
         settingsManager.setCalendarBackgroundColor(calendarBackgroundColor);
         settingsManager.setMonthTextColor(monthTextColor);
@@ -208,6 +214,14 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         settingsManager.setMonthTextAppearance(monthTextAppearance);
         settingsManager.setWeekDayTextAppearance(weekDayTextAppearance);
         settingsManager.setDayTextAppearance(dayTextAppearance);
+
+        settingsManager.setMonthHorizontalLinesVisible(horizontalLinesVisible);
+        settingsManager.setMonthTitleBottomDivVisible(monthDivVisible);
+
+        if(weekdayFormat != -1) {
+            DayOfWeek.WeekdayFormat format = DayOfWeek.WeekdayFormat.values()[weekdayFormat];
+            settingsManager.setWeekDayFormat(format.getFormat());
+        }
     }
 
     private void handleWeekendDaysAttributes(TypedArray typedArray) {
@@ -1067,6 +1081,39 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     @Override
     public void setDayTextAppearance(int dayTextAppearance) {
         settingsManager.setDayTextAppearance(dayTextAppearance);
+        update();
+    }
+
+    @Override
+    public boolean isMonthHorizontalLinesVisible() {
+        return settingsManager.isMonthHorizontalLinesVisible();
+    }
+
+    @Override
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        settingsManager.isMonthHorizontalLinesVisible();
+        update();
+    }
+
+    @Override
+    public boolean isMonthTitleBottomDivVisible() {
+        return settingsManager.isMonthTitleBottomDivVisible();
+    }
+
+    @Override
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        settingsManager.setMonthTitleBottomDivVisible(monthTitleBottomDivVisible);
+        update();
+    }
+
+    @Override
+    public String getWeekDayFormat() {
+        return settingsManager.getWeekDayFormat();
+    }
+
+    @Override
+    public void setWeekDayFormat(String weekDayFormat) {
+        settingsManager.setWeekDayFormat(weekDayFormat);
         update();
     }
 

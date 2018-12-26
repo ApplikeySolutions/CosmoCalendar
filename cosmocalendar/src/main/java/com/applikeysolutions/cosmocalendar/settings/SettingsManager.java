@@ -313,6 +313,36 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public boolean isMonthHorizontalLinesVisible() {
+        return appearanceModel.isMonthHorizontalLinesVisible();
+    }
+
+    @Override
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        appearanceModel.setMonthHorizontalLinesVisible(monthHorizontalLinesVisible);
+    }
+
+    @Override
+    public boolean isMonthTitleBottomDivVisible() {
+        return appearanceModel.isMonthTitleBottomDivVisible();
+    }
+
+    @Override
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        appearanceModel.setMonthTitleBottomDivVisible(monthTitleBottomDivVisible);
+    }
+
+    @Override
+    public String getWeekDayFormat() {
+        return appearanceModel.getWeekDayFormat();
+    }
+
+    @Override
+    public void setWeekDayFormat(String weekDayFormat) {
+        appearanceModel.setWeekDayFormat(weekDayFormat);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarListsModel.getDisabledDays();
     }

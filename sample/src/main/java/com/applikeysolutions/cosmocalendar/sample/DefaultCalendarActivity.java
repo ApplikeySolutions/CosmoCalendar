@@ -54,8 +54,8 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
         ((RadioGroup) findViewById(R.id.rg_orientation)).setOnCheckedChangeListener(this);
         ((RadioGroup) findViewById(R.id.rg_selection_type)).setOnCheckedChangeListener(this);
 
-        //calendarView.setShowDaysOfWeekTitle(false);
-        //calendarView.setShowDaysOfWeek(true);
+        calendarView.setShowDaysOfWeekTitle(false);
+        calendarView.setShowDaysOfWeek(true);
     }
 
     private void createCriterias() {

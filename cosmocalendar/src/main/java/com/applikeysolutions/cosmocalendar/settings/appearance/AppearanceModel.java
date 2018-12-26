@@ -68,6 +68,11 @@ public class AppearanceModel implements AppearanceInterface {
     private @StyleRes int weekDayTextAppearance;
     private @StyleRes int dayTextAppearance;
 
+    private boolean monthHorizontalLinesVisible;
+    private boolean monthTitleBottomDivVisible;
+
+    private String weekDayFormat;
+
     /**
      * Orientation of calendar
      * possible values:
@@ -104,6 +109,14 @@ public class AppearanceModel implements AppearanceInterface {
 
     public void setDayTextAppearance(int dayTextAppearance) {
         this.dayTextAppearance = dayTextAppearance;
+    }
+
+    public boolean isMonthHorizontalLinesVisible() {
+        return monthHorizontalLinesVisible;
+    }
+
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        this.monthHorizontalLinesVisible = monthHorizontalLinesVisible;
     }
 
     @Override
@@ -334,5 +347,21 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         this.showDaysOfWeekTitle = showDaysOfWeekTitle;
+    }
+
+    public boolean isMonthTitleBottomDivVisible() {
+        return monthTitleBottomDivVisible;
+    }
+
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        this.monthTitleBottomDivVisible = monthTitleBottomDivVisible;
+    }
+
+    public String getWeekDayFormat() {
+        return weekDayFormat;
+    }
+
+    public void setWeekDayFormat(String weekDayFormat) {
+        this.weekDayFormat = weekDayFormat;
     }
 }

@@ -103,4 +103,14 @@ public interface AppearanceInterface {
     int getDayTextAppearance();
 
     void setDayTextAppearance(int dayTextAppearance);
+
+    boolean isMonthHorizontalLinesVisible();
+    void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible);
+
+    boolean isMonthTitleBottomDivVisible();
+
+    void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible);
+
+    String getWeekDayFormat();
+    void setWeekDayFormat(String weekDayFormat);
 }

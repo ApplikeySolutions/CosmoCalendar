@@ -18,6 +18,9 @@
         app:dayTextAppearance = "@style/DayTextAppearance"
         app:monthTextAppearance = "@style/MonthTextAppearance"
         app:weekDayTextAppearance = "@style/WeekdayTextAppearance"
+        app:monthHorizontalLinesVisible="false"
+        app:monthTitleBottomDivVisible="true"
+        app:weekdayFormat="medium"
         android:layout_above="@+id/ll_settings"
         android:layout_below="@id/toolbar"/>
 

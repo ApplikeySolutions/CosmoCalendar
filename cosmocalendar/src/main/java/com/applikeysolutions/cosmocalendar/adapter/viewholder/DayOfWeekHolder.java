@@ -26,6 +26,10 @@ public class DayOfWeekHolder extends BaseDayHolder {
     }
 
     public void bind(Day day) {
+        if(calendarView.getWeekDayFormat() != null) {
+            mDayOfWeekFormatter = new SimpleDateFormat(calendarView.getWeekDayFormat(), Locale.getDefault());
+        }
+
         tvDay.setText(mDayOfWeekFormatter.format(day.getCalendar().getTime()));
         tvDay.setTextColor(calendarView.getWeekDayTitleTextColor());
     }
