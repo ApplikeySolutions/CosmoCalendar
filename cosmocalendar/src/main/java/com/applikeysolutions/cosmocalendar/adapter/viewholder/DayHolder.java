@@ -21,6 +21,10 @@ public class DayHolder extends BaseDayHolder {
     public DayHolder(View itemView, CalendarView calendarView) {
         super(itemView, calendarView);
         ctvDay = (CircleAnimationTextView) itemView.findViewById(R.id.tv_day_number);
+
+        if(calendarView.getDayTextAppearance() != -1) {
+            ctvDay.setTextAppearance(calendarView.getContext(), calendarView.getDayTextAppearance());
+        }
     }
 
     public void bind(Day day, BaseSelectionManager selectionManager) {

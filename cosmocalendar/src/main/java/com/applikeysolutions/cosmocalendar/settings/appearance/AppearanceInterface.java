@@ -93,4 +93,14 @@ public interface AppearanceInterface {
     void setShowDaysOfWeek(boolean showDaysOfWeek);
 
     void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle);
+
+    int getMonthTextAppearance();
+
+    void setMonthTextAppearance(int monthTextAppearance);
+    int getWeekDayTextAppearance();
+    void setWeekDayTextAppearance(int weekDayTextAppearance);
+
+    int getDayTextAppearance();
+
+    void setDayTextAppearance(int dayTextAppearance);
 }

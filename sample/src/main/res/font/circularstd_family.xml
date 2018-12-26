@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- regular -->
+    <font
+        android:font="@font/circularstd_book"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+
+        app:font="@font/circularstd_book"
+        app:fontStyle="normal"
+        app:fontWeight="400" />
+
+    <!-- bold -->
+    <font
+        android:font="@font/circularstd_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+
+        app:font="@font/circularstd_bold"
+        app:fontStyle="normal"
+        app:fontWeight="700" />
+
+    <!-- semi bold -->
+    <font
+        android:font="@font/circularstd_medium"
+        android:fontStyle="normal"
+        android:fontWeight="550"
+
+        app:font="@font/circularstd_medium"
+        app:fontStyle="normal"
+        app:fontWeight="550" />
+
+    <!-- italic -->
+    <font
+        android:font="@font/circularstd_book_italic"
+        android:fontStyle="italic"
+        android:fontWeight="400"
+
+        app:font="@font/circularstd_book_italic"
+        app:fontStyle="italic"
+        app:fontWeight="400" />
+
+</font-family>

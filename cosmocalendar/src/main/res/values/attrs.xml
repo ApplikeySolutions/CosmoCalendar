@@ -64,5 +64,9 @@
             <flag name="sunday" value="64" />
         </attr>
 
+        <attr name="monthTextAppearance" format="reference" />
+        <attr name="weekDayTextAppearance" format="reference" />
+        <attr name="dayTextAppearance" format="reference" />
+
     </declare-styleable>
 </resources>

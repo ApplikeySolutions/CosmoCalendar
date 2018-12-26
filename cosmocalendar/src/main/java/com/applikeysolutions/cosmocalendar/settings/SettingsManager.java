@@ -283,6 +283,36 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public int getMonthTextAppearance() {
+        return appearanceModel.getMonthTextAppearance();
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        appearanceModel.setMonthTextAppearance(monthTextAppearance);
+    }
+
+    @Override
+    public int getWeekDayTextAppearance() {
+        return appearanceModel.getWeekDayTextAppearance();
+    }
+
+    @Override
+    public void setWeekDayTextAppearance(int weekDayTextAppearance) {
+        appearanceModel.setWeekDayTextAppearance(weekDayTextAppearance);
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return appearanceModel.getDayTextAppearance();
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        appearanceModel.setDayTextAppearance(dayTextAppearance);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarListsModel.getDisabledDays();
     }

@@ -174,6 +174,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int previousMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_previousMonthIconRes, R.drawable.ic_chevron_left_gray);
         int nextMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_nextMonthIconRes, R.drawable.ic_chevron_right_gray);
 
+        int monthTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_monthTextAppearance, -1);
+        int weekDayTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_weekDayTextAppearance, -1);
+        int dayTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_dayTextAppearance, -1);
+
         setBackgroundColor(calendarBackgroundColor);
         settingsManager.setCalendarBackgroundColor(calendarBackgroundColor);
         settingsManager.setMonthTextColor(monthTextColor);
@@ -200,6 +204,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         settingsManager.setSelectionType(selectionType);
         settingsManager.setPreviousMonthIconRes(previousMonthIconRes);
         settingsManager.setNextMonthIconRes(nextMonthIconRes);
+
+        settingsManager.setMonthTextAppearance(monthTextAppearance);
+        settingsManager.setWeekDayTextAppearance(weekDayTextAppearance);
+        settingsManager.setDayTextAppearance(dayTextAppearance);
     }
 
     private void handleWeekendDaysAttributes(TypedArray typedArray) {
@@ -281,6 +289,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         for (String title : CalendarUtils.createWeekDayTitles(settingsManager.getFirstDayOfWeek())) {
             SquareTextView tvDayTitle = new SquareTextView(getContext());
             tvDayTitle.setText(title);
+            if(getWeekDayTextAppearance() != -1) {
+                tvDayTitle.setTextAppearance(getContext(), getWeekDayTextAppearance());
+            }
             tvDayTitle.setLayoutParams(textViewParam);
             tvDayTitle.setGravity(Gravity.CENTER);
             llDaysOfWeekTitles.addView(tvDayTitle);
@@ -679,11 +690,13 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
                 CircleAnimationTextView catvStart = (CircleAnimationTextView) llRangeSelection.findViewById(R.id.catv_start);
                 catvStart.setText(String.valueOf(days.first.getDayNumber()));
+                catvStart.setTextAppearance(getContext(), getDayTextAppearance());
                 catvStart.setTextColor(getSelectedDayTextColor());
                 catvStart.showAsStartCircle(this, true);
 
                 CircleAnimationTextView catvEnd = (CircleAnimationTextView) llRangeSelection.findViewById(R.id.catv_end);
                 catvEnd.setText(String.valueOf(days.second.getDayNumber()));
+                catvEnd.setTextAppearance(getContext(), getDayTextAppearance());
                 catvEnd.setTextColor(getSelectedDayTextColor());
                 catvEnd.showAsEndCircle(this, true);
 
@@ -1022,6 +1035,39 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         } else {
             hideDaysOfWeekTitle();
         }
+    }
+
+    @Override
+    public int getMonthTextAppearance() {
+        return settingsManager.getMonthTextAppearance();
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        settingsManager.setMonthTextAppearance(monthTextAppearance);
+        update();
+    }
+
+    @Override
+    public int getWeekDayTextAppearance() {
+        return settingsManager.getWeekDayTextAppearance();
+    }
+
+    @Override
+    public void setWeekDayTextAppearance(int weekDayTextAppearance) {
+        settingsManager.setWeekDayTextAppearance(weekDayTextAppearance);
+        update();
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return settingsManager.getDayTextAppearance();
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        settingsManager.setDayTextAppearance(dayTextAppearance);
+        update();
     }
 
     @Override

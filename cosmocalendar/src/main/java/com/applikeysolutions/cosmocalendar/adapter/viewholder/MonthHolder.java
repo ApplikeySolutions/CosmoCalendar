@@ -29,6 +29,10 @@ public class MonthHolder extends RecyclerView.ViewHolder {
         viewLeftLine = itemView.findViewById(R.id.view_left_line);
         viewRightLine = itemView.findViewById(R.id.view_right_line);
         this.appearanceModel = appearanceModel;
+
+        if(appearanceModel.getMonthTextAppearance() != -1) {
+            tvMonthName.setTextAppearance(tvMonthName.getContext(), appearanceModel.getMonthTextAppearance());
+        }
     }
 
     public void setDayAdapter(DaysAdapter adapter) {
