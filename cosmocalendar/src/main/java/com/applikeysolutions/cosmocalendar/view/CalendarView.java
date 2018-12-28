@@ -101,6 +101,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     private int lastVisibleMonthPosition = SettingsManager.DEFAULT_INITIAL_POSITION;
     private boolean hasMinOrMaxVisibleDateLimit;
+    private boolean isFirstSelect = true;
 
     private FetchMonthsAsyncTask asyncTask;
 
@@ -388,8 +389,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private void createRecyclerView() {
         rvMonths = new SlowdownRecyclerView(getContext());
         rvMonths.setId(ViewIDGenerator.generateViewId());
-        rvMonths.setHasFixedSize(true);
-        rvMonths.setNestedScrollingEnabled(true);
+        rvMonths.setHasFixedSize(false);
+        rvMonths.setNestedScrollingEnabled(false);
         ((SimpleItemAnimator) rvMonths.getItemAnimator()).setSupportsChangeAnimations(false);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -695,7 +696,10 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         for (Month month : monthAdapter.getData()) {
             if (month.getFirstDay().getCalendar().compareTo(selectedCalendar) > 0) {
                 lastVisibleMonthPosition = index - 1;
-                rvMonths.scrollToPosition(lastVisibleMonthPosition);
+                if (isFirstSelect) {
+                    rvMonths.scrollToPosition(lastVisibleMonthPosition);
+                    isFirstSelect = false;
+                }
                 break;
             }
             index++;

@@ -188,6 +188,10 @@ public final class CalendarUtils {
         return getDisplayWidth(context) / Constants.DAYS_IN_WEEK;
     }
 
+    public static int getCircleHeight(Context context) {
+        return getDisplayWidth(context) / (Constants.DAYS_IN_WEEK + 2);
+    }
+
     public static int getDisplayWidth(Context context) {
         return ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
     }

@@ -43,7 +43,7 @@ public class CircleAnimationTextView extends AppCompatTextView {
     private Paint backgroundRectanglePaint;
     private Rect backgroundRectangle;
 
-    public static final int DEFAULT_PADDING = 10;
+    public static final int DEFAULT_PADDING = 25;
     public static final int MAX_PROGRESS = 100;
     public static final long SELECTION_ANIMATION_DURATION = 300;
 
@@ -64,7 +64,7 @@ public class CircleAnimationTextView extends AppCompatTextView {
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.EXACTLY) {
             //For making all day views same height (ex. screen width 1080 and we have days with width 154/154/155/154/154/155/154)
-            super.onMeasure(widthMeasureSpec, CalendarUtils.getCircleWidth(getContext()) + MeasureSpec.EXACTLY);
+            super.onMeasure(widthMeasureSpec, CalendarUtils.getCircleHeight(getContext()) + MeasureSpec.EXACTLY);
         } else {
             super.onMeasure(widthMeasureSpec, widthMeasureSpec);
         }
@@ -132,7 +132,7 @@ public class CircleAnimationTextView extends AppCompatTextView {
         final int diameterProgress = animationProgress * diameter / MAX_PROGRESS;
 
         setBackgroundColor(Color.TRANSPARENT);
-        canvas.drawCircle(getWidth() / 2, getWidth() / 2, diameterProgress / 2, circlePaint);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, diameterProgress / 2, circlePaint);
     }
 
     private void drawCircleUnder(Canvas canvas) {
