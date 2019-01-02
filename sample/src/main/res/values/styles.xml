@@ -23,6 +23,8 @@
         <item name="android:fontFamily">@font/circularstd_family</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:capitalize">characters</item>
         <item name="android:lineSpacingMultiplier">1.20</item>
     </style>
 

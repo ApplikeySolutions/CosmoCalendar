@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:letterSpacing="0.1"
-            android:textAllCaps="true"
             android:textSize="@dimen/text_big"
             tools:text="April 2015" />
 
