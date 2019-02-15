@@ -43,20 +43,23 @@ public class CircleAnimationTextView extends AppCompatTextView {
     private Paint backgroundRectanglePaint;
     private Rect backgroundRectangle;
 
-    public static final int DEFAULT_PADDING = 25;
+    public static int DEFAULT_PADDING = 25;
     public static final int MAX_PROGRESS = 100;
     public static final long SELECTION_ANIMATION_DURATION = 300;
 
     public CircleAnimationTextView(Context context) {
         super(context);
+        DEFAULT_PADDING = CalendarUtils.dipToPx(context, 12);
     }
 
     public CircleAnimationTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        DEFAULT_PADDING = CalendarUtils.dipToPx(context, 12);
     }
 
     public CircleAnimationTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        DEFAULT_PADDING = CalendarUtils.dipToPx(context, 12);
     }
 
     //Square view

@@ -3,6 +3,7 @@ package com.applikeysolutions.cosmocalendar.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.applikeysolutions.cosmocalendar.settings.SettingsManager;
@@ -194,6 +195,13 @@ public final class CalendarUtils {
 
     public static int getDisplayWidth(Context context) {
         return ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+    }
+
+    public static int dipToPx(Context context, float dipValue) {
+        Resources resources = context.getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        float scale = displayMetrics.density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
     /**
