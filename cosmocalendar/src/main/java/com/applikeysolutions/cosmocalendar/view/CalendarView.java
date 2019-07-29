@@ -689,6 +689,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     @Override
     public void onDaySelected() {
         selectedDays = getSelectedDays();
+        if (selectedDays == null || selectedDays.isEmpty()) {
+            return;
+        }
         displaySelectedDays();
 
         int index = 0;
