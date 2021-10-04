@@ -62,6 +62,12 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
         threeMonthsCriteriaList.add(new CurrentMonthCriteria());
         threeMonthsCriteriaList.add(new NextMonthCriteria());
         threeMonthsCriteriaList.add(new PreviousMonthCriteria());
+
+        Calendar minDate = Calendar.getInstance();
+        minDate.set(Calendar.MONTH, 0);
+        minDate.set(Calendar.YEAR, minDate.get(Calendar.YEAR));
+        calendarView.setMinDate(minDate);
+        calendarView.setMaxDate(Calendar.getInstance());
     }
 
     @Override

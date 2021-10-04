@@ -108,6 +108,12 @@ public final class CalendarUtils {
         return months;
     }
 
+    public static Integer getDifferenceBetweenMonths(Calendar past, Calendar future){
+        int yearsInBetween = future.get(Calendar.YEAR) - past.get(Calendar.YEAR);
+        int monthsDiff = future.get(Calendar.MONTH) - past.get(Calendar.MONTH);
+        return yearsInBetween*12 + monthsDiff;
+    }
+
     /**
      * Returns selected Days grouped by month/year
      *

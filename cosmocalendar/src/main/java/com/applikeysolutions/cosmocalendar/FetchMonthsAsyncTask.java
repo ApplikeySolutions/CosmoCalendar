@@ -33,7 +33,18 @@ public class FetchMonthsAsyncTask extends AsyncTask<FetchMonthsAsyncTask.FetchPa
         final Calendar calendar = Calendar.getInstance();
         calendar.setTime(month.getFirstDay().getCalendar().getTime());
         final List<Month> result = new ArrayList<>();
-        for (int i = 0; i < SettingsManager.DEFAULT_MONTH_COUNT; i++) {
+        Integer monthsToLoad = SettingsManager.DEFAULT_MONTH_COUNT;
+        if(future && params.maxDate != null){
+            Integer difference = CalendarUtils.getDifferenceBetweenMonths(month.getFirstDay().getCalendar(), params.maxDate);
+            if (difference < monthsToLoad)
+                monthsToLoad = difference;
+        }
+        if (!future && params.minDate != null){
+            Integer difference = CalendarUtils.getDifferenceBetweenMonths(params.minDate, month.getFirstDay().getCalendar());
+            if (difference < monthsToLoad)
+                monthsToLoad = difference;
+        }
+        for (int i = 0; i < monthsToLoad; i++) {
             if(isCancelled())
                 break;
 
@@ -68,13 +79,17 @@ public class FetchMonthsAsyncTask extends AsyncTask<FetchMonthsAsyncTask.FetchPa
         private final SettingsManager settingsManager;
         private final MonthAdapter monthAdapter;
         private final int defaultMonthCount;
+        private final Calendar minDate;
+        private final Calendar maxDate;
 
-        public FetchParams(boolean future, Month month, SettingsManager settingsManager, MonthAdapter monthAdapter, int defaultMonthCount) {
+        public FetchParams(boolean future, Month month, SettingsManager settingsManager, MonthAdapter monthAdapter, int defaultMonthCount, Calendar minDate, Calendar maxDate) {
             this.future = future;
             this.month = month;
             this.settingsManager = settingsManager;
             this.monthAdapter = monthAdapter;
             this.defaultMonthCount = defaultMonthCount;
+            this.minDate = minDate;
+            this.maxDate = maxDate;
         }
     }
 }

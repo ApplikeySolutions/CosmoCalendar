@@ -17,6 +17,7 @@ import com.applikeysolutions.cosmocalendar.view.delegate.DayOfWeekDelegate;
 import com.applikeysolutions.cosmocalendar.view.delegate.MonthDelegate;
 import com.applikeysolutions.cosmocalendar.view.delegate.OtherDayDelegate;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -127,25 +128,44 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
 
     //minDate or maxDate by xxjy pull request #36
     public void setMinDate(Calendar minDate){
+        List<Month> monthsToBeRemoved = new ArrayList<>();
         for (Month month : months) {
             for (Day day : month.getDays()) {
-                if(!day.isDisabled()){
+                if (!day.isDisabled()) {
                     day.setDisabled(CalendarUtils.isDayDisabledByMinDate(day, minDate));
                 }
             }
+            if (allDaysInMonthAreDisabled(month)){
+                monthsToBeRemoved.add(month);
+            }
         }
+        months.removeAll(monthsToBeRemoved);
         notifyDataSetChanged();
     }
 
     public void setMaxDate(Calendar maxDate){
+        List<Month> monthsToBeRemoved = new ArrayList<>();
         for (Month month : months) {
             for (Day day : month.getDays()) {
-                if(!day.isDisabled()){
+                if (!day.isDisabled()) {
                     day.setDisabled(CalendarUtils.isDayDisabledByMaxDate(day, maxDate));
                 }
             }
+            if (allDaysInMonthAreDisabled(month)){
+                monthsToBeRemoved.add(month);
+            }
         }
+        months.removeAll(monthsToBeRemoved);
         notifyDataSetChanged();
+    }
+
+    private boolean allDaysInMonthAreDisabled(Month month) {
+        for (Day day: month.getDays()){
+            if (!day.isDisabled() && day.getCalendar().get(Calendar.MONTH)==month.getFirstDay().getCalendar().get(Calendar.MONTH)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setDisabledDays(Set<Long> disabledDays) {

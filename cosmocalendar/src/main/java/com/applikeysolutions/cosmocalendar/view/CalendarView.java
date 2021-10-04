@@ -474,7 +474,6 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
             final RecyclerView.LayoutManager manager = rvMonths.getLayoutManager();
-
             int totalItemCount = manager.getItemCount();
             int firstVisibleItemPosition = getFirstVisiblePosition(manager);
             lastVisibleMonthPosition = firstVisibleItemPosition;
@@ -508,7 +507,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
             month = monthAdapter.getData().get(0);
         }
 
-        asyncTask.execute(new FetchMonthsAsyncTask.FetchParams(future, month, settingsManager, monthAdapter, SettingsManager.DEFAULT_MONTH_COUNT));
+        asyncTask.execute(new FetchMonthsAsyncTask.FetchParams(future, month, settingsManager, monthAdapter, SettingsManager.DEFAULT_MONTH_COUNT, getMinDate(), getMaxDate()));
     }
     //minDate or maxDate by xxjy pull request #36
     @Override
