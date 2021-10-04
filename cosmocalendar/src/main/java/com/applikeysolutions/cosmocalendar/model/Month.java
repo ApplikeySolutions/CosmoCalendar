@@ -49,7 +49,7 @@ public class Month {
     }
 
     public String getMonthName() {
-        return new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(firstDay.getCalendar().getTime());
+        return new SimpleDateFormat("LLLL yyyy", Locale.getDefault()).format(firstDay.getCalendar().getTime());
     }
 
 

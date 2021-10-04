@@ -127,7 +127,7 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
     }
 
     //minDate or maxDate by xxjy pull request #36
-    public void setMinDate(Calendar minDate){
+    public void setMinDate(Calendar minDate) {
         List<Month> monthsToBeRemoved = new ArrayList<>();
         for (Month month : months) {
             for (Day day : month.getDays()) {
@@ -135,7 +135,7 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
                     day.setDisabled(CalendarUtils.isDayDisabledByMinDate(day, minDate));
                 }
             }
-            if (allDaysInMonthAreDisabled(month)){
+            if (allDaysInMonthAreDisabled(month)) {
                 monthsToBeRemoved.add(month);
             }
         }
@@ -143,7 +143,7 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
         notifyDataSetChanged();
     }
 
-    public void setMaxDate(Calendar maxDate){
+    public void setMaxDate(Calendar maxDate) {
         List<Month> monthsToBeRemoved = new ArrayList<>();
         for (Month month : months) {
             for (Day day : month.getDays()) {
@@ -151,7 +151,7 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
                     day.setDisabled(CalendarUtils.isDayDisabledByMaxDate(day, maxDate));
                 }
             }
-            if (allDaysInMonthAreDisabled(month)){
+            if (allDaysInMonthAreDisabled(month)) {
                 monthsToBeRemoved.add(month);
             }
         }
@@ -160,8 +160,8 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
     }
 
     private boolean allDaysInMonthAreDisabled(Month month) {
-        for (Day day: month.getDays()){
-            if (!day.isDisabled() && day.getCalendar().get(Calendar.MONTH)==month.getFirstDay().getCalendar().get(Calendar.MONTH)){
+        for (Day day : month.getDays()) {
+            if (!day.isDisabled() && day.getCalendar().get(Calendar.MONTH) == month.getFirstDay().getCalendar().get(Calendar.MONTH)) {
                 return false;
             }
         }
@@ -176,15 +176,28 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
         setDaysAccordingToSet(connectedCalendarDays, DayFlag.FROM_CONNECTED_CALENDAR);
     }
 
-    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria){
+    public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         for (Month month : months) {
             for (Day day : month.getDays()) {
-                if(!day.isDisabled()){
+                if (!day.isDisabled()) {
                     day.setDisabled(CalendarUtils.isDayDisabledByCriteria(day, criteria));
                 }
             }
         }
         notifyDataSetChanged();
+    }
+
+    public Integer getPositionOfCurrentMonth() {
+        Integer currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 0; i < months.size(); i++) {
+            Calendar monthCalendar = months.get(i).getFirstDay().getCalendar();
+            if (monthCalendar.get(Calendar.MONTH) == currentMonth && monthCalendar.get(Calendar.YEAR) == currentYear) {
+                return i;
+            }
+
+        }
+        return 0;
     }
 
     private void setDaysAccordingToSet(Set<Long> days, DayFlag dayFlag) {

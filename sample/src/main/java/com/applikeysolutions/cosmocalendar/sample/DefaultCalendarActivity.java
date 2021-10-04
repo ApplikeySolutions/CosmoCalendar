@@ -67,7 +67,9 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
         minDate.set(Calendar.MONTH, 0);
         minDate.set(Calendar.YEAR, minDate.get(Calendar.YEAR));
         calendarView.setMinDate(minDate);
-        calendarView.setMaxDate(Calendar.getInstance());
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.set(Calendar.MONTH, 11);
+        calendarView.setMaxDate(maxDate);
     }
 
     @Override

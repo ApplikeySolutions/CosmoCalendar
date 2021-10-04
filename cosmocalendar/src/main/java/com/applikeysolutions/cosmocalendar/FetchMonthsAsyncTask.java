@@ -34,18 +34,18 @@ public class FetchMonthsAsyncTask extends AsyncTask<FetchMonthsAsyncTask.FetchPa
         calendar.setTime(month.getFirstDay().getCalendar().getTime());
         final List<Month> result = new ArrayList<>();
         Integer monthsToLoad = SettingsManager.DEFAULT_MONTH_COUNT;
-        if(future && params.maxDate != null){
+        if (future && params.maxDate != null) {
             Integer difference = CalendarUtils.getDifferenceBetweenMonths(month.getFirstDay().getCalendar(), params.maxDate);
             if (difference < monthsToLoad)
                 monthsToLoad = difference;
         }
-        if (!future && params.minDate != null){
+        if (!future && params.minDate != null) {
             Integer difference = CalendarUtils.getDifferenceBetweenMonths(params.minDate, month.getFirstDay().getCalendar());
             if (difference < monthsToLoad)
                 monthsToLoad = difference;
         }
         for (int i = 0; i < monthsToLoad; i++) {
-            if(isCancelled())
+            if (isCancelled())
                 break;
 
             calendar.add(Calendar.MONTH, future ? 1 : -1);
