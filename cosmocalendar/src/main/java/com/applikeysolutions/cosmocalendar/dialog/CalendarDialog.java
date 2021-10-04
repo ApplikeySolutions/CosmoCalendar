@@ -220,6 +220,16 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public int getMonthHeaderBackgroundColor() {
+        return calendarView.getMonthHeaderBackgroundColor();
+    }
+
+    @Override
+    public boolean isMonthHeaderBackgroundColorSet() {
+        return calendarView.isMonthHeaderBackgroundColorSet();
+    }
+
+    @Override
     public boolean isShowDaysOfWeek() {
         return calendarView.isShowDaysOfWeek();
     }
@@ -343,6 +353,12 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         calendarView.setShowDaysOfWeekTitle(showDaysOfWeekTitle);
     }
+
+    @Override
+    public void setMonthHeaderBackgroundColor(int monthHeaderBackgroundColor) {
+        calendarView.setMonthHeaderBackgroundColor(monthHeaderBackgroundColor);
+    }
+
     //minDate or maxDate by xxjy pull request #36
     @Override
     public Calendar getMinDate() {

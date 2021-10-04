@@ -874,6 +874,16 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     }
 
     @Override
+    public int getMonthHeaderBackgroundColor() {
+        return settingsManager.getMonthHeaderBackgroundColor();
+    }
+
+    @Override
+    public boolean isMonthHeaderBackgroundColorSet() {
+        return settingsManager.isMonthHeaderBackgroundColorSet();
+    }
+
+    @Override
     public boolean isShowDaysOfWeek() {
         return settingsManager.isShowDaysOfWeek();
     }
@@ -1047,6 +1057,11 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         } else {
             hideDaysOfWeekTitle();
         }
+    }
+
+    @Override
+    public void setMonthHeaderBackgroundColor(int monthHeaderBackgroundColor) {
+        settingsManager.setMonthHeaderBackgroundColor(monthHeaderBackgroundColor);
     }
 
     @Override

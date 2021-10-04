@@ -62,6 +62,10 @@ public class AppearanceModel implements AppearanceInterface {
     //Icon resource of next month navigation button
     private int nextMonthIconRes;
 
+    private int monthHeaderBackgroundColor;
+
+    private boolean monthHeaderBackgroundColorIsSet = false;
+
     /**
      * Orientation of calendar
      * possible values:
@@ -180,6 +184,16 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public int getNextMonthIconRes() {
         return nextMonthIconRes;
+    }
+
+    @Override
+    public int getMonthHeaderBackgroundColor() {
+        return monthHeaderBackgroundColor;
+    }
+
+    @Override
+    public boolean isMonthHeaderBackgroundColorSet() {
+        return monthHeaderBackgroundColorIsSet;
     }
 
     @Override
@@ -305,5 +319,11 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         this.showDaysOfWeekTitle = showDaysOfWeekTitle;
+    }
+
+    @Override
+    public void setMonthHeaderBackgroundColor(int monthHeaderBackgroundColor){
+        this.monthHeaderBackgroundColor = monthHeaderBackgroundColor;
+        monthHeaderBackgroundColorIsSet = true;
     }
 }

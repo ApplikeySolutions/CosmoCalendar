@@ -44,6 +44,10 @@ public interface AppearanceInterface {
 
     int getNextMonthIconRes();
 
+    int getMonthHeaderBackgroundColor();
+
+    boolean isMonthHeaderBackgroundColorSet();
+
     boolean isShowDaysOfWeek();
 
     boolean isShowDaysOfWeekTitle();
@@ -93,4 +97,6 @@ public interface AppearanceInterface {
     void setShowDaysOfWeek(boolean showDaysOfWeek);
 
     void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle);
+
+    void setMonthHeaderBackgroundColor(int monthHeaderBackgroundColor);
 }

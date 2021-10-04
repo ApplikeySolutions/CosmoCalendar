@@ -1,18 +1,25 @@
 package com.applikeysolutions.cosmocalendar.sample;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.applikeysolutions.cosmocalendar.dialog.CalendarDialog;
+import com.applikeysolutions.cosmocalendar.dialog.OnDaysSelectionListener;
+import com.applikeysolutions.cosmocalendar.model.Day;
 import com.applikeysolutions.cosmocalendar.selection.MultipleSelectionManager;
+import com.applikeysolutions.cosmocalendar.selection.OnDaySelectedListener;
+import com.applikeysolutions.cosmocalendar.selection.RangeSelectionManager;
 import com.applikeysolutions.cosmocalendar.selection.criteria.BaseCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.WeekDayCriteria;
 import com.applikeysolutions.cosmocalendar.selection.criteria.month.CurrentMonthCriteria;
@@ -21,8 +28,10 @@ import com.applikeysolutions.cosmocalendar.selection.criteria.month.PreviousMont
 import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.applikeysolutions.cosmocalendar.view.CalendarView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class DefaultCalendarActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
@@ -70,6 +79,30 @@ public class DefaultCalendarActivity extends AppCompatActivity implements RadioG
         Calendar maxDate = Calendar.getInstance();
         maxDate.set(Calendar.MONTH, 11);
         calendarView.setMaxDate(maxDate);
+
+        calendarView.setMonthHeaderBackgroundColor(Color.RED);
+
+        calendarView.setSelectionManager(new RangeSelectionManager(new OnDaySelectedListener() {
+
+            @Override
+            public void onDaySelected() {
+                Log.e(" CALENDAR_ACTIVITY ", "========== setSelectionManager ==========");
+
+                Log.e(" CALENDAR_ACTIVITY ", "Selected Dates : " + calendarView.getSelectedDates().size());
+                if (calendarView.getSelectedDates().size() <= 0)
+                    return;
+
+                Log.e(" CALENDAR_ACTIVITY ", "Selected Days : " + calendarView.getSelectedDays());
+                Log.e(" CALENDAR_ACTIVITY ", "Departure : DD MMM YYYY : " + formatDateToString(calendarView.getSelectedDays().get(0).getCalendar().getTime(), "dd MMM yyyy"));
+                Log.e(" CALENDAR_ACTIVITY ", "   Return : DD MMM YYYY : " + formatDateToString(calendarView.getSelectedDays().get(calendarView.getSelectedDates().size() - 1).getCalendar().getTime(), "dd MMM yyyy"));
+
+            }
+        }));
+    }
+
+    private String formatDateToString(Date date, String format){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
     }
 
     @Override

@@ -158,6 +158,16 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public int getMonthHeaderBackgroundColor() {
+        return appearanceModel.getMonthHeaderBackgroundColor();
+    }
+
+    @Override
+    public boolean isMonthHeaderBackgroundColorSet() {
+        return appearanceModel.isMonthHeaderBackgroundColorSet();
+    }
+
+    @Override
     public boolean isShowDaysOfWeek() {
         return appearanceModel.isShowDaysOfWeek();
     }
@@ -280,6 +290,11 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         appearanceModel.setShowDaysOfWeekTitle(showDaysOfWeekTitle);
+    }
+
+    @Override
+    public void setMonthHeaderBackgroundColor(int monthHeaderBackgroundColor) {
+        appearanceModel.setMonthHeaderBackgroundColor(monthHeaderBackgroundColor);
     }
 
     //minDate or maxDate by xxjy pull request #36
