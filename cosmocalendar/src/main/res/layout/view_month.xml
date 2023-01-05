@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_1x"
+    android:paddingTop="@dimen/space_1x">
 
     <LinearLayout
         android:id="@+id/ll_month_header"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <View
@@ -27,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:letterSpacing="0.1"
-            android:textAllCaps="true"
             android:textSize="@dimen/text_big"
             tools:text="April 2015" />
 
@@ -43,9 +44,21 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/view_div_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/space_1x"
+        android:layout_marginRight="@dimen/space_1x"
+        android:layout_marginTop="@dimen/space_2x"
+        android:paddingBottom="@dimen/space_1x"
+        android:background="@color/default_border_color" />
+
     <com.applikeysolutions.cosmocalendar.view.MonthView
         android:id="@+id/month_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_1x"/>
 
 </LinearLayout>

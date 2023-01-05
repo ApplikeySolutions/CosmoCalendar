@@ -64,5 +64,19 @@
             <flag name="sunday" value="64" />
         </attr>
 
+        <attr name="monthTextAppearance" format="reference" />
+        <attr name="weekDayTextAppearance" format="reference" />
+        <attr name="dayTextAppearance" format="reference" />
+
+        <attr name="monthHorizontalLinesVisible" format="boolean" />
+        <attr name="monthTitleBottomDivVisible" format="boolean" />
+
+        <attr name="weekdayFormat" format="enum">
+            <enum name="minimal" value="0" />
+            <enum name="medium" value="1" />
+        </attr>
+
+        <attr name="borderColor" format="color" />
+
     </declare-styleable>
 </resources>

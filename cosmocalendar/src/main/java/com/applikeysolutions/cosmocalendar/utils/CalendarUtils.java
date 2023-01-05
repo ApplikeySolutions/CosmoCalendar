@@ -141,7 +141,11 @@ public final class CalendarUtils {
      *
      * @return
      */
-    public static int getCircleWidth(Context context) {
+    public static int getCircleWidth(Context context, Integer parentWidth) {
+        if(parentWidth != null) {
+            return parentWidth / Constants.DAYS_IN_WEEK;
+        }
+
         return getDisplayWidth(context) / Constants.DAYS_IN_WEEK;
     }
 

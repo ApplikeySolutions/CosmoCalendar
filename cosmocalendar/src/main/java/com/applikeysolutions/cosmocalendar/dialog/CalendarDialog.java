@@ -344,6 +344,76 @@ public class CalendarDialog extends Dialog implements View.OnClickListener,
     }
 
     @Override
+    public int getMonthTextAppearance() {
+        return calendarView.getMonthTextAppearance();
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        calendarView.setMonthTextAppearance(monthTextAppearance);
+    }
+
+    @Override
+    public int getWeekDayTextAppearance() {
+        return calendarView.getWeekDayTextAppearance();
+    }
+
+    @Override
+    public void setWeekDayTextAppearance(int weekDayTextAppearance) {
+        calendarView.setWeekDayTextAppearance(weekDayTextAppearance);
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return calendarView.getDayTextAppearance();
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        calendarView.setDayTextAppearance(dayTextAppearance);
+    }
+
+    @Override
+    public boolean isMonthHorizontalLinesVisible() {
+        return calendarView.isMonthHorizontalLinesVisible();
+    }
+
+    @Override
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        calendarView.setMonthHorizontalLinesVisible(monthHorizontalLinesVisible);
+    }
+
+    @Override
+    public boolean isMonthTitleBottomDivVisible() {
+        return calendarView.isMonthTitleBottomDivVisible();
+    }
+
+    @Override
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        calendarView.setMonthTitleBottomDivVisible(monthTitleBottomDivVisible);
+    }
+
+    @Override
+    public String getWeekDayFormat() {
+        return calendarView.getWeekDayFormat();
+    }
+
+    @Override
+    public void setWeekDayFormat(String weekDayFormat) {
+        calendarView.setWeekDayFormat(weekDayFormat);
+    }
+
+    @Override
+    public int getBorderColor() {
+        return calendarView.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(int borderColor) {
+        calendarView.setBorderColor(borderColor);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarView.getDisabledDays();
     }

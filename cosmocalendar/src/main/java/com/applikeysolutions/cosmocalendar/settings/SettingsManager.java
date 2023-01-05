@@ -283,6 +283,76 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public int getMonthTextAppearance() {
+        return appearanceModel.getMonthTextAppearance();
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        appearanceModel.setMonthTextAppearance(monthTextAppearance);
+    }
+
+    @Override
+    public int getWeekDayTextAppearance() {
+        return appearanceModel.getWeekDayTextAppearance();
+    }
+
+    @Override
+    public void setWeekDayTextAppearance(int weekDayTextAppearance) {
+        appearanceModel.setWeekDayTextAppearance(weekDayTextAppearance);
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return appearanceModel.getDayTextAppearance();
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        appearanceModel.setDayTextAppearance(dayTextAppearance);
+    }
+
+    @Override
+    public boolean isMonthHorizontalLinesVisible() {
+        return appearanceModel.isMonthHorizontalLinesVisible();
+    }
+
+    @Override
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        appearanceModel.setMonthHorizontalLinesVisible(monthHorizontalLinesVisible);
+    }
+
+    @Override
+    public boolean isMonthTitleBottomDivVisible() {
+        return appearanceModel.isMonthTitleBottomDivVisible();
+    }
+
+    @Override
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        appearanceModel.setMonthTitleBottomDivVisible(monthTitleBottomDivVisible);
+    }
+
+    @Override
+    public String getWeekDayFormat() {
+        return appearanceModel.getWeekDayFormat();
+    }
+
+    @Override
+    public void setWeekDayFormat(String weekDayFormat) {
+        appearanceModel.setWeekDayFormat(weekDayFormat);
+    }
+
+    @Override
+    public int getBorderColor() {
+        return appearanceModel.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(int borderColor) {
+        appearanceModel.setBorderColor(borderColor);
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarListsModel.getDisabledDays();
     }

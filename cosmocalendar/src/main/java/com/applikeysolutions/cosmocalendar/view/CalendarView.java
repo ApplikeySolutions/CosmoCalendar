@@ -2,7 +2,10 @@ package com.applikeysolutions.cosmocalendar.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.AttrRes;
@@ -17,6 +20,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.applikeysolutions.cosmocalendar.model.DayOfWeek;
 import com.applikeysolutions.cosmocalendar.selection.NoneSelectionManager;
 import com.applikeysolutions.cosmocalendar.FetchMonthsAsyncTask;
 import com.applikeysolutions.cosmocalendar.adapter.MonthAdapter;
@@ -174,6 +179,17 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int previousMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_previousMonthIconRes, R.drawable.ic_chevron_left_gray);
         int nextMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_nextMonthIconRes, R.drawable.ic_chevron_right_gray);
 
+        int monthTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_monthTextAppearance, -1);
+        int weekDayTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_weekDayTextAppearance, -1);
+        int dayTextAppearance = typedArray.getResourceId(R.styleable.CalendarView_dayTextAppearance, -1);
+
+        boolean horizontalLinesVisible = typedArray.getBoolean(R.styleable.CalendarView_monthHorizontalLinesVisible, true);
+        boolean monthDivVisible = typedArray.getBoolean(R.styleable.CalendarView_monthTitleBottomDivVisible, false);
+
+        int weekdayFormat = typedArray.getInt(R.styleable.CalendarView_weekdayFormat, -1);
+
+        int borderColor = typedArray.getColor(R.styleable.CalendarView_borderColor, getResources().getColor(R.color.default_border_color));
+
         setBackgroundColor(calendarBackgroundColor);
         settingsManager.setCalendarBackgroundColor(calendarBackgroundColor);
         settingsManager.setMonthTextColor(monthTextColor);
@@ -200,6 +216,20 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         settingsManager.setSelectionType(selectionType);
         settingsManager.setPreviousMonthIconRes(previousMonthIconRes);
         settingsManager.setNextMonthIconRes(nextMonthIconRes);
+
+        settingsManager.setMonthTextAppearance(monthTextAppearance);
+        settingsManager.setWeekDayTextAppearance(weekDayTextAppearance);
+        settingsManager.setDayTextAppearance(dayTextAppearance);
+
+        settingsManager.setMonthHorizontalLinesVisible(horizontalLinesVisible);
+        settingsManager.setMonthTitleBottomDivVisible(monthDivVisible);
+
+        settingsManager.setBorderColor(borderColor);
+
+        if(weekdayFormat != -1) {
+            DayOfWeek.WeekdayFormat format = DayOfWeek.WeekdayFormat.values()[weekdayFormat];
+            settingsManager.setWeekDayFormat(format.getFormat());
+        }
     }
 
     private void handleWeekendDaysAttributes(TypedArray typedArray) {
@@ -281,6 +311,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         for (String title : CalendarUtils.createWeekDayTitles(settingsManager.getFirstDayOfWeek())) {
             SquareTextView tvDayTitle = new SquareTextView(getContext());
             tvDayTitle.setText(title);
+            if(getWeekDayTextAppearance() != -1) {
+                tvDayTitle.setTextAppearance(getContext(), getWeekDayTextAppearance());
+            }
             tvDayTitle.setLayoutParams(textViewParam);
             tvDayTitle.setGravity(Gravity.CENTER);
             llDaysOfWeekTitles.addView(tvDayTitle);
@@ -288,6 +321,9 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
         //adding borders
         llDaysOfWeekTitles.setBackgroundResource(R.drawable.border_top_bottom);
+
+        LayerDrawable background = (LayerDrawable) llDaysOfWeekTitles.getBackground().mutate();
+        ((GradientDrawable)background.getDrawable(0)).setStroke((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics()), settingsManager.getBorderColor());
 
         if (!isTitleAlreadyAdded) {
             addView(llDaysOfWeekTitles);
@@ -679,11 +715,13 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
                 CircleAnimationTextView catvStart = (CircleAnimationTextView) llRangeSelection.findViewById(R.id.catv_start);
                 catvStart.setText(String.valueOf(days.first.getDayNumber()));
+                catvStart.setTextAppearance(getContext(), getDayTextAppearance());
                 catvStart.setTextColor(getSelectedDayTextColor());
                 catvStart.showAsStartCircle(this, true);
 
                 CircleAnimationTextView catvEnd = (CircleAnimationTextView) llRangeSelection.findViewById(R.id.catv_end);
                 catvEnd.setText(String.valueOf(days.second.getDayNumber()));
+                catvEnd.setTextAppearance(getContext(), getDayTextAppearance());
                 catvEnd.setTextColor(getSelectedDayTextColor());
                 catvEnd.showAsEndCircle(this, true);
 
@@ -1022,6 +1060,83 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         } else {
             hideDaysOfWeekTitle();
         }
+    }
+
+    @Override
+    public int getMonthTextAppearance() {
+        return settingsManager.getMonthTextAppearance();
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        settingsManager.setMonthTextAppearance(monthTextAppearance);
+        update();
+    }
+
+    @Override
+    public int getWeekDayTextAppearance() {
+        return settingsManager.getWeekDayTextAppearance();
+    }
+
+    @Override
+    public void setWeekDayTextAppearance(int weekDayTextAppearance) {
+        settingsManager.setWeekDayTextAppearance(weekDayTextAppearance);
+        update();
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return settingsManager.getDayTextAppearance();
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        settingsManager.setDayTextAppearance(dayTextAppearance);
+        update();
+    }
+
+    @Override
+    public boolean isMonthHorizontalLinesVisible() {
+        return settingsManager.isMonthHorizontalLinesVisible();
+    }
+
+    @Override
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        settingsManager.isMonthHorizontalLinesVisible();
+        update();
+    }
+
+    @Override
+    public boolean isMonthTitleBottomDivVisible() {
+        return settingsManager.isMonthTitleBottomDivVisible();
+    }
+
+    @Override
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        settingsManager.setMonthTitleBottomDivVisible(monthTitleBottomDivVisible);
+        update();
+    }
+
+    @Override
+    public String getWeekDayFormat() {
+        return settingsManager.getWeekDayFormat();
+    }
+
+    @Override
+    public void setWeekDayFormat(String weekDayFormat) {
+        settingsManager.setWeekDayFormat(weekDayFormat);
+        update();
+    }
+
+    @Override
+    public int getBorderColor() {
+        return settingsManager.getBorderColor();
+    }
+
+    @Override
+    public void setBorderColor(int borderColor) {
+        settingsManager.setBorderColor(borderColor);
+        update();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.applikeysolutions.cosmocalendar.settings.appearance;
 
+import android.support.annotation.StyleRes;
+
 public class AppearanceModel implements AppearanceInterface {
 
     //Background color of whole calendar
@@ -62,6 +64,17 @@ public class AppearanceModel implements AppearanceInterface {
     //Icon resource of next month navigation button
     private int nextMonthIconRes;
 
+    private @StyleRes int monthTextAppearance;
+    private @StyleRes int weekDayTextAppearance;
+    private @StyleRes int dayTextAppearance;
+
+    private boolean monthHorizontalLinesVisible;
+    private boolean monthTitleBottomDivVisible;
+
+    private String weekDayFormat;
+
+    private int borderColor;
+
     /**
      * Orientation of calendar
      * possible values:
@@ -76,6 +89,37 @@ public class AppearanceModel implements AppearanceInterface {
     //Defines if we need to display week day title for whole calendar
     private boolean showDaysOfWeekTitle;
 
+    public int getMonthTextAppearance() {
+        return monthTextAppearance;
+    }
+
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        this.monthTextAppearance = monthTextAppearance;
+    }
+
+    public int getWeekDayTextAppearance() {
+        return weekDayTextAppearance;
+    }
+
+    public void setWeekDayTextAppearance(int weekDayTextAppearance) {
+        this.weekDayTextAppearance = weekDayTextAppearance;
+    }
+
+    public int getDayTextAppearance() {
+        return dayTextAppearance;
+    }
+
+    public void setDayTextAppearance(int dayTextAppearance) {
+        this.dayTextAppearance = dayTextAppearance;
+    }
+
+    public boolean isMonthHorizontalLinesVisible() {
+        return monthHorizontalLinesVisible;
+    }
+
+    public void setMonthHorizontalLinesVisible(boolean monthHorizontalLinesVisible) {
+        this.monthHorizontalLinesVisible = monthHorizontalLinesVisible;
+    }
 
     @Override
     public int getCalendarBackgroundColor() {
@@ -305,5 +349,29 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         this.showDaysOfWeekTitle = showDaysOfWeekTitle;
+    }
+
+    public boolean isMonthTitleBottomDivVisible() {
+        return monthTitleBottomDivVisible;
+    }
+
+    public void setMonthTitleBottomDivVisible(boolean monthTitleBottomDivVisible) {
+        this.monthTitleBottomDivVisible = monthTitleBottomDivVisible;
+    }
+
+    public String getWeekDayFormat() {
+        return weekDayFormat;
+    }
+
+    public void setWeekDayFormat(String weekDayFormat) {
+        this.weekDayFormat = weekDayFormat;
+    }
+
+    public int getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(int borderColor) {
+        this.borderColor = borderColor;
     }
 }

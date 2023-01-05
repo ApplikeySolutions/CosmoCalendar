@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -14,6 +15,13 @@
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/space_2x"
+        app:dayTextAppearance = "@style/DayTextAppearance"
+        app:monthTextAppearance = "@style/MonthTextAppearance"
+        app:weekDayTextAppearance = "@style/WeekdayTextAppearance"
+        app:monthHorizontalLinesVisible="false"
+        app:monthTitleBottomDivVisible="true"
+        app:weekdayFormat="medium"
         android:layout_above="@+id/ll_settings"
         android:layout_below="@id/toolbar"/>
 

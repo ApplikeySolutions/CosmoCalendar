@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.applikeysolutions.cosmocalendar"
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -19,6 +19,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(path: ':cosmocalendar')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':cosmocalendar')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "com.android.support:recyclerview-v7:28.0.0"
 }

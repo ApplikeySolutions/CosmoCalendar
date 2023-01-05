@@ -4,4 +4,29 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="DayTextAppearance" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/circularstd_family</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingMultiplier">1.20</item>
+    </style>
+
+    <style name="WeekdayTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/circularstd_family</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingMultiplier">1.20</item>
+    </style>
+
+    <style name="MonthTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/circularstd_family</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:capitalize">characters</item>
+        <item name="android:lineSpacingMultiplier">1.20</item>
+    </style>
+
+
 </resources>

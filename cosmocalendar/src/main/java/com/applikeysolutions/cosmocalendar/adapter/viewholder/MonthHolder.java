@@ -18,6 +18,7 @@ public class MonthHolder extends RecyclerView.ViewHolder {
     private TextView tvMonthName;
     private View viewLeftLine;
     private View viewRightLine;
+    private View viewHorizontalDivLine;
     private MonthView monthView;
     private SettingsManager appearanceModel;
 
@@ -28,7 +29,12 @@ public class MonthHolder extends RecyclerView.ViewHolder {
         tvMonthName = (TextView) itemView.findViewById(R.id.tv_month_name);
         viewLeftLine = itemView.findViewById(R.id.view_left_line);
         viewRightLine = itemView.findViewById(R.id.view_right_line);
+        viewHorizontalDivLine = itemView.findViewById(R.id.view_div_line);
         this.appearanceModel = appearanceModel;
+
+        if(appearanceModel.getMonthTextAppearance() != -1) {
+            tvMonthName.setTextAppearance(tvMonthName.getContext(), appearanceModel.getMonthTextAppearance());
+        }
     }
 
     public void setDayAdapter(DaysAdapter adapter) {
@@ -39,8 +45,17 @@ public class MonthHolder extends RecyclerView.ViewHolder {
         tvMonthName.setText(month.getMonthName());
         tvMonthName.setTextColor(appearanceModel.getMonthTextColor());
 
-        viewLeftLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.VISIBLE);
-        viewRightLine.setVisibility(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? View.INVISIBLE : View.VISIBLE);
+        viewLeftLine.setBackgroundColor(appearanceModel.getBorderColor());
+        viewRightLine.setBackgroundColor(appearanceModel.getBorderColor());
+        viewHorizontalDivLine.setBackgroundColor(appearanceModel.getBorderColor());
+
+        boolean isLineVisible = appearanceModel.getCalendarOrientation() == OrientationHelper.VERTICAL && appearanceModel.isMonthHorizontalLinesVisible();
+        boolean isTitleDivVisible = appearanceModel.isMonthTitleBottomDivVisible();
+
+        viewLeftLine.setVisibility(isLineVisible ? View.VISIBLE : View.INVISIBLE);
+        viewRightLine.setVisibility(isLineVisible ? View.VISIBLE : View.INVISIBLE);
+        viewHorizontalDivLine.setVisibility(isTitleDivVisible ? View.VISIBLE : View.GONE);
+
         llMonthHeader.setBackgroundResource(appearanceModel.getCalendarOrientation() == OrientationHelper.HORIZONTAL ? R.drawable.border_top_bottom : 0);
 
         monthView.initAdapter(month);
