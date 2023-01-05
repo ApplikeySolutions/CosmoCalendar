@@ -64,5 +64,7 @@
             <flag name="sunday" value="64" />
         </attr>
 
+        <attr name="singlePageSwipe" format="boolean"/>
+
     </declare-styleable>
 </resources>

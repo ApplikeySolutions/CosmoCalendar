@@ -14,9 +14,12 @@ import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.support.v7.widget.SnapHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +93,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     //Helpers
     private SettingsManager settingsManager;
     private BaseSelectionManager selectionManager;
-    private GravitySnapHelper snapHelper;
+    private SnapHelper snapHelper;
 
     //Listeners
     private OnMonthChangeListener onMonthChangeListener;
@@ -99,6 +102,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
     private int lastVisibleMonthPosition = SettingsManager.DEFAULT_MONTH_COUNT / 2;
 
     private FetchMonthsAsyncTask asyncTask;
+
+    private boolean swipeSinglePage;
 
     public CalendarView(Context context) {
         super(context);
@@ -173,6 +178,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         int selectionBarMonthTextColor = typedArray.getColor(R.styleable.CalendarView_selectionBarMonthTextColor, ContextCompat.getColor(getContext(), R.color.default_selection_bar_month_title_text_color));
         int previousMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_previousMonthIconRes, R.drawable.ic_chevron_left_gray);
         int nextMonthIconRes = typedArray.getResourceId(R.styleable.CalendarView_nextMonthIconRes, R.drawable.ic_chevron_right_gray);
+
+        swipeSinglePage = typedArray.getBoolean(R.styleable.CalendarView_singlePageSwipe, false);
 
         setBackgroundColor(calendarBackgroundColor);
         settingsManager.setCalendarBackgroundColor(calendarBackgroundColor);
@@ -381,6 +388,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     private void createRecyclerView() {
         rvMonths = new SlowdownRecyclerView(getContext());
+
         rvMonths.setId(View.generateViewId());
         rvMonths.setHasFixedSize(true);
         rvMonths.setNestedScrollingEnabled(false);
@@ -464,8 +472,15 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
                 //Hide navigation buttons
                 boolean show = newState != RecyclerView.SCROLL_STATE_DRAGGING;
+
                 ivPrevious.setVisibility(show ? View.VISIBLE : View.GONE);
                 ivNext.setVisibility(show ? View.VISIBLE : View.GONE);
+
+                boolean clickable = newState == RecyclerView.SCROLL_STATE_IDLE;
+
+                ivPrevious.setClickable(clickable);
+                ivNext.setClickable(clickable);
+
             }
 
             super.onScrollStateChanged(recyclerView, newState);
@@ -603,7 +618,8 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      * Scroll calendar to previous month
      */
     public void goToPreviousMonth() {
-        int currentVisibleItemPosition = ((GridLayoutManager) rvMonths.getLayoutManager()).findFirstVisibleItemPosition();
+
+        int currentVisibleItemPosition = ((GridLayoutManager) rvMonths.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
         if (currentVisibleItemPosition != 0) {
             rvMonths.smoothScrollToPosition(currentVisibleItemPosition - 1);
         }
@@ -613,7 +629,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
      * Scroll calendar to next month
      */
     public void goToNextMonth() {
-        int currentVisibleItemPosition = ((GridLayoutManager) rvMonths.getLayoutManager()).findFirstVisibleItemPosition();
+        int currentVisibleItemPosition = ((GridLayoutManager) rvMonths.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
         if (currentVisibleItemPosition != monthAdapter.getData().size() - 1) {
             rvMonths.smoothScrollToPosition(currentVisibleItemPosition + 1);
         }
@@ -948,7 +964,7 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
         rvMonths.setLayoutManager(new GridLayoutManager(getContext(), 1, getCalendarOrientation(), false));
 
-        changeSnapHelper();
+        //changeSnapHelper();
 
         if (getCalendarOrientation() == LinearLayout.HORIZONTAL) {
             if (flNavigationButtons != null) {
@@ -1042,11 +1058,17 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
 
     private void changeSnapHelper() {
         rvMonths.setOnFlingListener(null);
-        if (snapHelper == null) {
-            snapHelper = new GravitySnapHelper(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START, true, this);
+        if (swipeSinglePage){
+            snapHelper = new PagerSnapHelper();
             snapHelper.attachToRecyclerView(rvMonths);
-        } else {
-            snapHelper.setGravity(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START);
+        }else{
+            if (snapHelper == null) {
+                snapHelper = new GravitySnapHelper(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START, true, this);
+                snapHelper.attachToRecyclerView(rvMonths);
+            } else {
+                if (snapHelper instanceof GravitySnapHelper)
+                    ((GravitySnapHelper)snapHelper).setGravity(settingsManager.getCalendarOrientation() == LinearLayoutManager.VERTICAL ? Gravity.TOP : Gravity.START);
+            }
         }
     }
 
