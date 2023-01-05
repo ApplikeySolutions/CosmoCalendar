@@ -542,6 +542,14 @@ public class CalendarView extends RelativeLayout implements OnDaySelectedListene
         monthAdapter.setWeekendDays(weekendDays);
     }
 
+    /**
+     * re-Enables the already disabled days if wants to toggle
+     */
+    public void resetDisabledDays()
+    {
+        monthAdapter.resetDisabledDays();
+    }
+
     @Override
     public void setDisabledDaysCriteria(DisabledDaysCriteria criteria) {
         settingsManager.setDisabledDaysCriteria(criteria);
