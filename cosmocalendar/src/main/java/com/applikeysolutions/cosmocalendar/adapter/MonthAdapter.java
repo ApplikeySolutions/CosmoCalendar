@@ -125,6 +125,28 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthHolder> {
         setDaysAccordingToSet(weekendDays, DayFlag.WEEKEND);
     }
 
+    public void setMinDate(Calendar minDate){
+        for (Month month : months) {
+            for (Day day : month.getDays()) {
+                if(!day.isDisabled()){
+                    day.setDisabled(CalendarUtils.isDayDisabledByMinDate(day, minDate));
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void setMaxDate(Calendar maxDate){
+        for (Month month : months) {
+            for (Day day : month.getDays()) {
+                if(!day.isDisabled()){
+                    day.setDisabled(CalendarUtils.isDayDisabledByMaxDate(day, maxDate));
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     public void setDisabledDays(Set<Long> disabledDays) {
         setDaysAccordingToSet(disabledDays, DayFlag.DISABLED);
     }

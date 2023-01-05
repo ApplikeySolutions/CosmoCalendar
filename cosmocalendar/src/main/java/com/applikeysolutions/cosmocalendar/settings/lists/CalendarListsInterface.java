@@ -3,9 +3,14 @@ package com.applikeysolutions.cosmocalendar.settings.lists;
 import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDays;
 import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDaysManager;
 
+import java.util.Calendar;
 import java.util.Set;
 
 public interface CalendarListsInterface {
+
+    Calendar getMinDate();
+
+    Calendar getMaxDate();
 
     Set<Long> getDisabledDays();
 
@@ -14,6 +19,10 @@ public interface CalendarListsInterface {
     Set<Long> getWeekendDays();
 
     DisabledDaysCriteria getDisabledDaysCriteria();
+
+    void setMinDate(Calendar minDate);
+
+    void setMaxDate(Calendar maxDate);
 
     void setDisabledDays(Set<Long> disabledDays);
 
