@@ -1,5 +1,6 @@
 package com.applikeysolutions.cosmocalendar.adapter.viewholder;
 
+import android.support.v4.widget.TextViewCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,7 +16,9 @@ public class OtherDayHolder extends BaseDayHolder {
     }
 
     public void bind(Day day) {
+        TextViewCompat.setTextAppearance(tvDay, calendarView.getDayTextAppearance());
         tvDay.setText(String.valueOf(day.getDayNumber()));
         tvDay.setTextColor(calendarView.getOtherDayTextColor());
+        tvDay.setVisibility(calendarView.getOtherDayVisibility() ? View.VISIBLE : View.INVISIBLE);
     }
 }

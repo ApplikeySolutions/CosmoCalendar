@@ -62,6 +62,18 @@ public class AppearanceModel implements AppearanceInterface {
     //Icon resource of next month navigation button
     private int nextMonthIconRes;
 
+    //Text Appearance resource of day text
+    private int dayTextAppearanceRes;
+
+    //Text Appearance resource of week text
+    private int weekTextAppearanceRes;
+
+    //Text Appearance resource of month text
+    private int monthTextAppearanceRes;
+
+    //Other day text visibility
+    private boolean isOtherDayVisible = true;
+
     /**
      * Orientation of calendar
      * possible values:
@@ -180,6 +192,26 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public int getNextMonthIconRes() {
         return nextMonthIconRes;
+    }
+
+    @Override
+    public boolean getOtherDayVisibility() {
+        return isOtherDayVisible;
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return dayTextAppearanceRes;
+    }
+
+    @Override
+    public int getWeekTextAppearance() {
+        return weekTextAppearanceRes;
+    }
+
+    @Override
+    public int getMonthTextAppearance() {
+        return monthTextAppearanceRes;
     }
 
     @Override
@@ -305,5 +337,25 @@ public class AppearanceModel implements AppearanceInterface {
     @Override
     public void setShowDaysOfWeekTitle(boolean showDaysOfWeekTitle) {
         this.showDaysOfWeekTitle = showDaysOfWeekTitle;
+    }
+
+    @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        this.dayTextAppearanceRes = dayTextAppearance;
+    }
+
+    @Override
+    public void setWeekTextAppearance(int weekTextAppearance) {
+        this.weekTextAppearanceRes = weekTextAppearance;
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        this.monthTextAppearanceRes = monthTextAppearance;
+    }
+
+    @Override
+    public void setOtherDayVisibility(boolean isVisible) {
+        isOtherDayVisible = isVisible;
     }
 }

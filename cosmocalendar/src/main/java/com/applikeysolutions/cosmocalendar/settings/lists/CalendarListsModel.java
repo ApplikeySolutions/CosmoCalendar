@@ -10,6 +10,14 @@ import java.util.TreeSet;
 
 public class CalendarListsModel implements CalendarListsInterface {
 
+    private Calendar enableMinDate;
+
+    private Calendar enableMaxDate;
+
+    private Calendar visibleMinDate;
+
+    private Calendar visibleMaxDate;
+
     //Disabled days cannot be selected
     private Set<Long> disabledDays = new TreeSet<>();
 
@@ -21,6 +29,26 @@ public class CalendarListsModel implements CalendarListsInterface {
     private Set<Long> weekendDays = new HashSet() {{
         add(Calendar.SUNDAY);
     }};
+
+    @Override
+    public Calendar getEnableMinDate() {
+        return enableMinDate;
+    }
+
+    @Override
+    public Calendar getEnableMaxDate() {
+        return enableMaxDate;
+    }
+
+    @Override
+    public Calendar getVisibleMinDate() {
+        return visibleMinDate;
+    }
+
+    @Override
+    public Calendar getVisibleMaxDate() {
+        return visibleMaxDate;
+    }
 
     @Override
     public Set<Long> getDisabledDays() {
@@ -40,6 +68,26 @@ public class CalendarListsModel implements CalendarListsInterface {
     @Override
     public DisabledDaysCriteria getDisabledDaysCriteria() {
         return disabledDaysCriteria;
+    }
+
+    @Override
+    public void setEnableMinDate(Calendar minDate) {
+        this.enableMinDate = minDate;
+    }
+
+    @Override
+    public void setEnableMaxDate(Calendar maxDate) {
+        this.enableMaxDate = maxDate;
+    }
+
+    @Override
+    public void setVisibleMinDate(Calendar minDate) {
+        this.visibleMinDate = minDate;
+    }
+
+    @Override
+    public void setVisibleMaxDate(Calendar maxDate) {
+        this.visibleMaxDate = maxDate;
     }
 
     @Override

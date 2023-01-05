@@ -23,6 +23,7 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
 
     //Default values
     public static final int DEFAULT_MONTH_COUNT = 20;
+    public static final int DEFAULT_INITIAL_POSITION = 0;
     public static final int DEFAULT_SELECTION_TYPE = SelectionType.SINGLE;
     public static final int DEFAULT_FIRST_DAY_OF_WEEK = Calendar.MONDAY;
     public static final int DEFAULT_ORIENTATION = LinearLayoutManager.VERTICAL;
@@ -33,12 +34,17 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     private DateModel dateModel;
     private CalendarListsModel calendarListsModel;
     private SelectionModel selectionModel;
+    private int initialPosition = DEFAULT_INITIAL_POSITION;
 
     public SettingsManager() {
         appearanceModel = new AppearanceModel();
         dateModel = new DateModel();
         calendarListsModel = new CalendarListsModel();
         selectionModel = new SelectionModel();
+    }
+
+    public int getInitialPosition() {
+        return initialPosition;
     }
 
     @Override
@@ -158,6 +164,26 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public boolean getOtherDayVisibility() {
+        return appearanceModel.getOtherDayVisibility();
+    }
+
+    @Override
+    public int getDayTextAppearance() {
+        return appearanceModel.getDayTextAppearance();
+    }
+
+    @Override
+    public int getWeekTextAppearance() {
+        return appearanceModel.getWeekTextAppearance();
+    }
+
+    @Override
+    public int getMonthTextAppearance() {
+        return appearanceModel.getMonthTextAppearance();
+    }
+
+    @Override
     public boolean isShowDaysOfWeek() {
         return appearanceModel.isShowDaysOfWeek();
     }
@@ -165,6 +191,10 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public boolean isShowDaysOfWeekTitle() {
         return appearanceModel.isShowDaysOfWeekTitle();
+    }
+
+    public void setInitialPosition(int initialPosition) {
+        this.initialPosition = initialPosition;
     }
 
     @Override
@@ -283,6 +313,46 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     }
 
     @Override
+    public void setDayTextAppearance(int dayTextAppearance) {
+        appearanceModel.setDayTextAppearance(dayTextAppearance);
+    }
+
+    @Override
+    public void setWeekTextAppearance(int weekTextAppearance) {
+        appearanceModel.setWeekTextAppearance(weekTextAppearance);
+    }
+
+    @Override
+    public void setMonthTextAppearance(int monthTextAppearance) {
+        appearanceModel.setMonthTextAppearance(monthTextAppearance);
+    }
+
+    @Override
+    public void setOtherDayVisibility(boolean isVisible) {
+        appearanceModel.setOtherDayVisibility(isVisible);
+    }
+
+    @Override
+    public Calendar getEnableMinDate() {
+        return calendarListsModel.getEnableMinDate();
+    }
+
+    @Override
+    public Calendar getEnableMaxDate() {
+        return calendarListsModel.getEnableMaxDate();
+    }
+
+    @Override
+    public Calendar getVisibleMinDate() {
+        return calendarListsModel.getVisibleMinDate();
+    }
+
+    @Override
+    public Calendar getVisibleMaxDate() {
+        return calendarListsModel.getVisibleMaxDate();
+    }
+
+    @Override
     public Set<Long> getDisabledDays() {
         return calendarListsModel.getDisabledDays();
     }
@@ -330,5 +400,25 @@ public class SettingsManager implements AppearanceInterface, DateInterface, Cale
     @Override
     public void setFirstDayOfWeek(int firstDayOfWeek) {
         dateModel.setFirstDayOfWeek(firstDayOfWeek);
+    }
+
+    @Override
+    public void setEnableMinDate(Calendar minDate) {
+        calendarListsModel.setEnableMinDate(minDate);
+    }
+
+    @Override
+    public void setEnableMaxDate(Calendar maxDate) {
+        calendarListsModel.setEnableMaxDate(maxDate);
+    }
+
+    @Override
+    public void setVisibleMinDate(Calendar minDate) {
+        calendarListsModel.setVisibleMinDate(minDate);
+    }
+
+    @Override
+    public void setVisibleMaxDate(Calendar maxDate) {
+        calendarListsModel.setVisibleMaxDate(maxDate);
     }
 }
